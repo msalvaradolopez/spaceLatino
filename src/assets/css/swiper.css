@@ -1,6 +1,6 @@
 .swiper-container {
   width: 100%;
-  height: 100vh;
+  height: 85vh;
   overflow: hidden;
 }
 .swiper-slide {
@@ -13,7 +13,7 @@
 
 .wrapper {
   background: linear-gradient(45deg, #000, transparent);
-  height: 100vh;
+  height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
