@@ -18,11 +18,6 @@ export class CatalogoSwiperComponent implements OnInit, AfterViewInit{
 
   }
 
-  ngAfterContentInit(): void {
-    
-    
-  }
-
   ngAfterViewInit(): void {
     var swiper = new Swiper('.swiper-container', {
       direction: 'vertical',
