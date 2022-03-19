@@ -26,7 +26,8 @@
             "styles": [
               "src/styles.css",
               "src/assets/css/swiper.css",
-              "src/assets/css/spaceLatino.css"
+              "src/assets/css/spaceLatino.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               

@@ -2,17 +2,17 @@
   <div class="swiper-container grid-container">
     <div class="swiper-wrapper">
       <div
-        *ngFor="let item of _catalogoList"
+        *ngFor="let item of _articulosList"
         class="swiper-slide imagen-item tall wide"
-        style="
-          background-image: url('https://th.bing.com/th/id/R.43b8f87fb57b36ad42086705d71ac969?rik=l8QXXeP%2bcI%2bU%2fg&pid=ImgRaw&r=0');
-        "
+        [ngStyle]="{
+          'background-image': 'url(\'' + transform(item.imagenes) + '\')'
+        }"
+        [id]="item.idArticulo"
       >
-        {{ item }}
         <div class="overlay"></div>
         <div class="articulo-titulo">
-          <span>Nombre del articulo </span>
-          <span>$1,500.00</span>
+          <span>{{ item.nomArticulo }}</span>
+          <span>{{ item.precio }}</span>
         </div>
         <div class="articulo-botones">
           <button class="boton-add-carrito">
