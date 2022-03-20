@@ -54,10 +54,12 @@ body {
 
 .menu-header {
   /* grid-area: header; */
-  /* position: fixed; */
-  opacity: 0.1;
+  position: fixed;
+  color: black;
+  /* opacity: 0.1; */
   top: 0;
   width: 100%;
+  height: 50px;
   z-index: 2;
 }
 
@@ -183,7 +185,7 @@ input:hover {
 
 .menu-footer {
   /* grid-area: footer; */
-  padding: 3% 0%;
+  padding: 15px;
   background: black;
   color: #fff;
   cursor: pointer;
