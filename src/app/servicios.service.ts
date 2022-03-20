@@ -25,6 +25,9 @@ export class ServiciosService {
   private _iconosAcciones = new Subject<string>();
   iconosAcciones$ = this._iconosAcciones.asObservable();
 
+  private _swiper = new Subject<string>();
+  swiper$ = this._swiper.asObservable();
+
   constructor(private _http: HttpClient, private _router: Router) { }
 
   wsGeneral(ws: string, param: any ): Observable<any> {
@@ -50,6 +53,10 @@ export class ServiciosService {
 
   iconosAcciones(acciones: string) {
     this._iconosAcciones.next(acciones);
+  }
+
+  swiper() {
+    this._swiper.next();
   }
 
 }

@@ -13,6 +13,7 @@ import { CatalogoSwiperComponent } from './catalogo-swiper/catalogo-swiper.compo
 import { MenuHeaderComponent } from './menu-header/menu-header.component';
 import { MenuFooterComponent } from './menu-footer/menu-footer.component';
 import { MenuHeaderSwiperComponent } from './menu-header-swiper/menu-header-swiper.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MenuHeaderSwiperComponent } from './menu-header-swiper/menu-header-swip
     CatalogoSwiperComponent,
     MenuHeaderComponent,
     MenuFooterComponent,
-    MenuHeaderSwiperComponent
+    MenuHeaderSwiperComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

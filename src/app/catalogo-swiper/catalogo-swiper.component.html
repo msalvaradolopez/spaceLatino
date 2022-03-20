@@ -1,42 +1,44 @@
-<div class="wrapper">
-  <div class="swiper-container grid-container">
-    <div class="swiper-wrapper">
-      <div
-        *ngFor="let item of _articulosList"
-        class="swiper-slide imagen-item tall wide"
-        [ngStyle]="{
-          'background-image': 'url(\'' + transform(item.imagenes) + '\')'
-        }"
-        [id]="item.idArticulo"
-      >
-        <div class="overlay"></div>
-        <div class="articulo-titulo">
-          <span>{{ item.nomArticulo }}</span>
-          <span>{{ item.precio }}</span>
-        </div>
-        <div class="articulo-botones">
-          <button class="boton-add-carrito">
-            <i class="fa-solid fa-info"></i>
-          </button>
-          <button class="boton-add-carrito">
-            <i class="fa-solid fa-heart"></i>
-          </button>
+<!-- Slider main container -->
+<div [style.display]="_swiperShow ? 'block' : 'none'" class="swiper">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    <div
+      *ngFor="let item of _articulosList"
+      class="swiper-slide imagen-item tall wide"
+      [ngStyle]="{
+        'background-image': 'url(\'' + transform(item.imagenes) + '\')'
+      }"
+      [id]="item.idArticulo"
+    >
+      <div class="overlay"></div>
+      <div class="articulo-titulo">
+        <span>{{ item.nomArticulo }}</span>
+        <span>{{ item.precio }}</span>
+      </div>
+      <div class="articulo-botones">
+        <button class="boton-add-carrito">
+          <i class="fa-solid fa-info"></i>
+        </button>
+        <button class="boton-add-carrito">
+          <i class="fa-solid fa-heart"></i>
+        </button>
 
-          <button class="boton-add-carrito">
-            <i class="fa-regular fa-comment"></i>
-          </button>
+        <button class="boton-add-carrito">
+          <i class="fa-regular fa-comment"></i>
+        </button>
 
-          <button class="boton-add-carrito">
-            <i class="fa-regular fa-share-from-square"></i>
-          </button>
+        <button class="boton-add-carrito">
+          <i class="fa-regular fa-share-from-square"></i>
+        </button>
 
-          <button class="boton-add-carrito">
-            <i class="fa-solid fa-cart-shopping"></i>
-          </button>
-        </div>
+        <button class="boton-add-carrito">
+          <i class="fa-solid fa-cart-shopping"></i>
+        </button>
       </div>
     </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
   </div>
+
+  <!-- If we need scrollbar -->
+  <div class="swiper-scrollbar"></div>
 </div>

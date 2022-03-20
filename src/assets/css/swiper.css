@@ -1,8 +1,3 @@
-.swiper-container {
-  width: 100%;
-  height: 77vh;
-  overflow: hidden;
-}
 .swiper-slide {
   font-size: 18px;
   background: linear-gradient(45deg, rgb(173, 255, 246), rgb(221, 255, 219));
@@ -12,11 +7,20 @@
 }
 
 .wrapper {
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
   background: linear-gradient(45deg, #000, transparent);
-  height: 77vh;
+  /* height: 77vh; */
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.swiper {
+  width: 100%;
+  /* height: 100vh;*/
+  position: absolute;
+  height: calc(100vh - 15vh);
+  top: 0;
+  z-index: 1;
 }

@@ -23,7 +23,6 @@ export class AppComponent {
   ngOnInit(): void {
     sessionStorage.setItem("nomEmpresa", "Trade Latino")
 
-    this._router.navigate["catalogo-swiper"] ;
 
     sessionStorage.setItem("idEmpresa", "1");
 
@@ -32,7 +31,13 @@ export class AppComponent {
     this._servicios.wsGeneral("getArticulos", { idEmpresa: this._idEmpresa, nomArticulo: this._nomArticulo })
       .subscribe(x => {
         this._articulosList = x;
+      }, error => this._toastr.error("Error : " + error.error.ExceptionMessage, "Sucursal")
+      , () => {
+        console.log("app.commponent" , this._articulosList );
         sessionStorage.setItem("articulosList", JSON.stringify(this._articulosList));
-      }, error => this._toastr.error("Error : " + error.error.ExceptionMessage, "Sucursal"));
+        this._servicios.swiper();
+      });
+
+      
   }
 }
