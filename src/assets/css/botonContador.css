@@ -1,0 +1,49 @@
+/* CONTADOR PARA EL CARRITO */
+
+.product-count {
+  /* position: absolute; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  top: 25%;
+  left: 45%;
+  height: 30px;
+}
+
+.product-count a {
+  text-decoration: none;
+  font-weight: 700;
+  color: black;
+}
+
+/*
+.button-count {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #2196f3;
+  color: white;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: center;
+  border: none;
+  outline: none;
+}
+*/
+.button-count:active {
+  background-color: #1565c0;
+}
+
+.number-product {
+  display: inline-block;
+  width: 46px;
+  height: 28px;
+  font-size: 24px;
+  border: 1px solid #ffc145;
+  text-align: center;
+}
+
+:disabled {
+  background-color: silver;
+}

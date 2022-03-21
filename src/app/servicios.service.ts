@@ -25,7 +25,7 @@ export class ServiciosService {
   private _iconosAcciones = new Subject<string>();
   iconosAcciones$ = this._iconosAcciones.asObservable();
 
-  private _swiper = new Subject<string>();
+  private _swiper = new Subject<boolean>();
   swiper$ = this._swiper.asObservable();
 
   constructor(private _http: HttpClient, private _router: Router) { }
@@ -55,8 +55,8 @@ export class ServiciosService {
     this._iconosAcciones.next(acciones);
   }
 
-  swiper() {
-    this._swiper.next();
+  swiper(accion: boolean) {
+    this._swiper.next(accion);
   }
 
 }

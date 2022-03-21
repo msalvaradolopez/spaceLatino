@@ -52,7 +52,7 @@ body {
   /* opacity: 0.1; */
   top: 0;
   width: 100%;
-  height: 50px;
+  height: 30px;
   z-index: 2;
 }
 
@@ -116,7 +116,7 @@ body {
   font-size: large;
   position: absolute;
   bottom: 0;
-  color: white;
+  color: var(--text-color);
   /* background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5));*/
   /* width: 95%; */
   padding: 10%;
@@ -158,6 +158,7 @@ button {
   color: var(--text-color);
   margin: var(--input-margin);
   transition: var(--transition-time);
+  /* box-shadow: 0 2px 25px rgba(255, 223, 0, 0.5); */
 }
 
 button:hover,
@@ -197,12 +198,13 @@ input:hover {
 .boton-menu-footer {
   -webkit-tap-highlight-color: transparent;
   transition: background-color 0.1s ease-in-out;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .seccion-principal {
   flex: 1;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0));
+  overflow-y: auto;
 }
 
 .boton-buscar-swiper {

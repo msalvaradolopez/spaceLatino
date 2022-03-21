@@ -1,0 +1,89 @@
+<div class="articulo">
+  <div
+    class="grid-item-articulo tall-articulo-venta"
+    [ngStyle]="{
+      'background-image': 'url(\'' + transform(_articulo.imagenes) + '\')'
+    }"
+  >
+    <div class="overlay"></div>
+    <div class="articulo-titulo">
+      <span>{{ _articulo.nomArticulo }} </span>
+      <span>{{ _articulo.precio | currency }}</span>
+    </div>
+  </div>
+  <hr />
+  <div class="desc-articulo">
+    <p>
+      {{ _articulo.descripcion }}
+    </p>
+  </div>
+  <hr />
+  <div class="desc-articulo">
+    <span> unidad: </span>
+    <span>
+      {{ _articulo.idUnidad }}
+    </span>
+  </div>
+  <hr />
+  <div class="desc-articulo">
+    <span> marca: </span>
+    <span>
+      {{ _articulo.idMarca }}
+    </span>
+  </div>
+  <hr />
+  <div class="desc-articulo">
+    <span> Estado: </span>
+    <span>
+      {{ _nombreTipo }}
+    </span>
+  </div>
+
+  <hr />
+  <div class="importes-cantidades">
+    <div class="importe-articulo">importe: {{ _impVenta | currency }}</div>
+    <div class="product-count">
+      <button
+        class="no-active botones-compra"
+        (click)="ctdVentaBoton(false)"
+        [disabled]="_ctdDisminuyeDisable"
+      >
+        <i class="fa-solid fa-minus fa-2x"></i>
+      </button>
+      <input
+        type="text"
+        readonly
+        class="number-product"
+        value="1"
+        [(ngModel)]="_ctdVenta"
+      />
+      <button
+        (click)="ctdVentaBoton(true)"
+        [disabled]="_ctdAumentaDisable"
+        class="botones-compra"
+      >
+        <i class="fa-solid fa-plus fa-2x"></i>
+      </button>
+    </div>
+  </div>
+
+  <hr />
+  <div>
+    <button
+      *ngIf="_botonCarritoAgregar"
+      class="text-button botones-compra"
+      (click)="addCarrito()"
+    >
+      {{ textoBotonCarrito }}
+    </button>
+  </div>
+  <div>
+    <button
+      *ngIf="_botonCarritoQuitar"
+      class="text-button"
+      (click)="delCarrito()"
+    >
+      Quitar del carrito
+    </button>
+  </div>
+</div>

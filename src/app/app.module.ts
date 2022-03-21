@@ -14,6 +14,7 @@ import { MenuHeaderComponent } from './menu-header/menu-header.component';
 import { MenuFooterComponent } from './menu-footer/menu-footer.component';
 import { MenuHeaderSwiperComponent } from './menu-header-swiper/menu-header-swiper.component';
 import { LoaderComponent } from './loader/loader.component';
+import { ArticuloVentaComponent } from './articulo-venta/articulo-venta.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoaderComponent } from './loader/loader.component';
     MenuHeaderComponent,
     MenuFooterComponent,
     MenuHeaderSwiperComponent,
-    LoaderComponent
+    LoaderComponent,
+    ArticuloVentaComponent
   ],
   imports: [
     BrowserModule,

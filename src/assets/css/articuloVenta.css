@@ -1,0 +1,52 @@
+.grid-item-articulo {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  background-color: #03afff;
+  border-radius: 4px;
+  transition: transform 0.3s ease-in-out;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  height: 450px;
+}
+
+.tall-articulo-venta {
+  grid-row: span 3;
+}
+
+.desc-articulo {
+  font-family: Roboto;
+  /* font-size: larger; */
+  color: black;
+  text-align: left;
+  /* white-space: nowrap; */
+  overflow: hidden;
+  /* width: 100%;*/
+  padding: 10px;
+}
+
+.importes-cantidades {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.importe-articulo {
+  font-family: Roboto;
+  color: black;
+  text-align: left;
+  /* white-space: nowrap; */
+  overflow: hidden;
+}
+
+.botones-compra {
+  color: #ffc145;
+  border: 1px solid #ffc145;
+}

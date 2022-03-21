@@ -34,7 +34,7 @@ export class AppComponent {
       }, error => this._toastr.error("Error : " + error.error.ExceptionMessage, "Sucursal")
       , () => {
         sessionStorage.setItem("articulosList", JSON.stringify(this._articulosList));
-        this._servicios.swiper();
+        this._servicios.swiper(true);
       });
 
       

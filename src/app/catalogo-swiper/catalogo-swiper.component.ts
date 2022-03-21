@@ -18,7 +18,7 @@ export class CatalogoSwiperComponent implements OnInit{
 
   _idEmpresa: number = 0;
   _articulosList: Iarticulo[] = [];
-  _nomArticulo: string = "";
+  _articuloVenta: Iarticulo; // ARTICULO CONSULTADO
 
   _subSwiper: Subscription;
   _swiperShow: boolean = false;
@@ -36,7 +36,8 @@ export class CatalogoSwiperComponent implements OnInit{
     this._subSwiper = this._servicios.swiper$
     .subscribe(resp => {
       this._articulosList = JSON.parse(sessionStorage.getItem("articulosList"));
-      this.swiperShow();
+      this._articuloVenta = JSON.parse( sessionStorage.getItem("articuloVenta"));
+      this.swiperShow(resp, this._articuloVenta);
     });
     
   }
@@ -64,49 +65,29 @@ export class CatalogoSwiperComponent implements OnInit{
   ngOnDestroy() {
       this._subSwiper.unsubscribe();
   }
-/* 
-  ngAfterViewInit(): void {
-    const swiper = new Swiper('.swiper', {
-      // Optional parameters
-      direction: 'vertical',
-      loop: false,
-      mousewheel: true,
+
+  swiperShow(accion: boolean, articuloVenta: Iarticulo) {
+    this._swiperShow = accion;
+    if (accion) {
+      const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'vertical',
+        loop: false,
+        mousewheel: true,
+      
+        // And if we need scrollbar
+        scrollbar: {
+          el: '.swiper-scrollbar',
+        },
+        grabCursor: true
+      });  
+  
+      if(articuloVenta) {
+        let idx = this._articulosList.map(ren => ren.idArticulo).indexOf(articuloVenta.idArticulo);
+        if (idx) 
+          swiper.activeIndex = idx;
+      }
+    }
     
-      // And if we need scrollbar
-      scrollbar: {
-        el: '.swiper-scrollbar',
-      },
-      grabCursor: true
-    });  
-
-
-    let id: string = "TWA-0002";
-    console.log("swiper",id);
-    let idx = this._articulosList.map(ren => ren.idArticulo).indexOf(id);
-    swiper.activeIndex = idx;
- 
-  }
-  */
-
-  swiperShow() {
-    this._swiperShow = true;
-    const swiper = new Swiper('.swiper', {
-      // Optional parameters
-      direction: 'vertical',
-      loop: false,
-      mousewheel: true,
-    
-      // And if we need scrollbar
-      scrollbar: {
-        el: '.swiper-scrollbar',
-      },
-      grabCursor: true
-    });  
-
-
-    let id: string = "TWA-0002";
-    console.log("swiper",id);
-    let idx = this._articulosList.map(ren => ren.idArticulo).indexOf(id);
-    swiper.activeIndex = idx;
   }
 }

@@ -28,5 +28,6 @@ export interface Ipedido {
 export interface Icarrito {
     articulo: Iarticulo;
     cantidad: number;
+    importe: number;
 
 }
