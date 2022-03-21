@@ -7,6 +7,7 @@ import { Iimagen } from '../modelo-db';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 declare var Swiper: any;
+declare var $: any;
 
 @Component({
   selector: 'app-catalogo-swiper',
@@ -31,13 +32,11 @@ export class CatalogoSwiperComponent implements OnInit{
     //this._servicios.menuTopIconos({menu: true, titulo: true, buscar: true, cerrar: false, regresar: false, config: true, valorTitulo: ""})
 
     this._idEmpresa = parseInt(sessionStorage.getItem("idEmpresa"));
-    
-    console.log("swiper",this._articulosList);
 
     this._subSwiper = this._servicios.swiper$
-    .subscribe(() => {
+    .subscribe(resp => {
       this._articulosList = JSON.parse(sessionStorage.getItem("articulosList"));
-      this.swiperLoad();
+      this.swiperShow();
     });
     
   }
@@ -49,8 +48,6 @@ export class CatalogoSwiperComponent implements OnInit{
     sessionStorage.setItem("ventanaAnterior", "catalogo");
     this._router.navigate(['/articuloventa']) ;
   }
-
-
 
    //Call this method in the image source, it will sanitize it.
    transform(imagenes: Iimagen[]){
@@ -67,53 +64,49 @@ export class CatalogoSwiperComponent implements OnInit{
   ngOnDestroy() {
       this._subSwiper.unsubscribe();
   }
-
-  swiperLoad() {
-    this._swiperShow = true;
+/* 
+  ngAfterViewInit(): void {
     const swiper = new Swiper('.swiper', {
       // Optional parameters
       direction: 'vertical',
-      loop: true,
+      loop: false,
       mousewheel: true,
     
       // And if we need scrollbar
       scrollbar: {
         el: '.swiper-scrollbar',
       },
+      grabCursor: true
     });  
-    
+
+
+    let id: string = "TWA-0002";
+    console.log("swiper",id);
+    let idx = this._articulosList.map(ren => ren.idArticulo).indexOf(id);
+    swiper.activeIndex = idx;
+ 
   }
+  */
 
-  /*
-  ngAfterViewInit(): void {
-  const swiper = new Swiper('.swiper', {
-    // Optional parameters
-    direction: 'vertical',
-    loop: true,
-    mousewheel: true,
-  
-    // And if we need scrollbar
-    scrollbar: {
-      el: '.swiper-scrollbar',
-    },
-  });
-  // this.scroll();
-}
-
-*/
-/*
-  ngAfterViewInit(): void {
-    var swiper = new Swiper('.swiper-container', {
+  swiperShow() {
+    this._swiperShow = true;
+    const swiper = new Swiper('.swiper', {
+      // Optional parameters
       direction: 'vertical',
-      sliderPerView: 1,
-      spaceBetween: 0,
+      loop: false,
       mousewheel: true,
-      pagination: {
-          el:'.swiper-pagination',
-          type: 'progressbar',
-      }
-    });
-    this.scroll();
+    
+      // And if we need scrollbar
+      scrollbar: {
+        el: '.swiper-scrollbar',
+      },
+      grabCursor: true
+    });  
+
+
+    let id: string = "TWA-0002";
+    console.log("swiper",id);
+    let idx = this._articulosList.map(ren => ren.idArticulo).indexOf(id);
+    swiper.activeIndex = idx;
   }
-*/ 
 }

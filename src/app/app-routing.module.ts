@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CatalogoSwiperComponent } from './catalogo-swiper/catalogo-swiper.component';
 import { LoaderComponent } from './loader/loader.component';
 
 

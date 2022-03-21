@@ -33,7 +33,6 @@ export class AppComponent {
         this._articulosList = x;
       }, error => this._toastr.error("Error : " + error.error.ExceptionMessage, "Sucursal")
       , () => {
-        console.log("app.commponent" , this._articulosList );
         sessionStorage.setItem("articulosList", JSON.stringify(this._articulosList));
         this._servicios.swiper();
       });

@@ -15,8 +15,9 @@ body {
   display: flex;
   flex-direction: column;
   max-width: 1440px;
-  height: 100hv;
+  height: 100vh;
   height: -webkit-fill-available;
+  scroll-behavior: smooth !important;
 }
 
 :root {
@@ -31,20 +32,12 @@ body {
 }
 
 .grid-container {
-  /* min-height: 100vh; */
-  /* height: calc(var(--vh, 1vh) * 100);*/
   display: flex;
   flex-direction: column;
   max-width: 1440px;
-  height: 100hv;
+  height: 100vh;
   height: -webkit-fill-available;
-  /* grid-template-rows: auto 1fr auto; */
-  /* grid-template-rows: 10% minmax(80%, 80%) 10%; 
-  grid-template-areas:
-    "header"
-    "main"
-    "footer";
-  */
+
   position: relative;
 }
 
@@ -210,12 +203,6 @@ input:hover {
 .seccion-principal {
   flex: 1;
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0));
-  /* grid-area: main; */
-  /*
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  */
 }
 
 .boton-buscar-swiper {
