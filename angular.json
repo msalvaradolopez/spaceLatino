@@ -29,6 +29,7 @@
               "src/assets/css/swiper.css",
               "src/assets/css/spaceLatino.css",
               "src/assets/css/articuloVenta.css",
+              "src/assets/css/carrito.css",
               "src/assets/css/responsive.css",
               "src/assets/css/botonContador.css",
               "node_modules/ngx-toastr/toastr.css"

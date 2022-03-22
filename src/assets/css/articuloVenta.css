@@ -46,7 +46,12 @@
   overflow: hidden;
 }
 
-.botones-compra {
+.boton-add-carrito {
   color: #ffc145;
   border: 1px solid #ffc145;
+}
+
+.boton-del-carrito {
+  color: red;
+  border: 1px solid red;
 }

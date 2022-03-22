@@ -17,22 +17,19 @@
         <span>{{ item.precio }}</span>
       </div>
       <div class="articulo-botones">
-        <button class="boton-add-carrito" (click)="articuloVenta(item)">
-          <i class="fa-solid fa-info"></i>
-        </button>
-        <button class="boton-add-carrito">
+        <button>
           <i class="fa-solid fa-heart"></i>
         </button>
 
-        <button class="boton-add-carrito">
+        <button>
           <i class="fa-regular fa-comment"></i>
         </button>
 
-        <button class="boton-add-carrito">
+        <button>
           <i class="fa-regular fa-share-from-square"></i>
         </button>
 
-        <button class="boton-add-carrito">
+        <button (click)="articuloVenta(item)">
           <i class="fa-solid fa-cart-shopping"></i>
         </button>
       </div>

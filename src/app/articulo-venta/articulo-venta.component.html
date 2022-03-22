@@ -71,7 +71,7 @@
   <div>
     <button
       *ngIf="_botonCarritoAgregar"
-      class="text-button botones-compra"
+      class="text-button boton-add-carrito"
       (click)="addCarrito()"
     >
       {{ textoBotonCarrito }}
@@ -80,7 +80,7 @@
   <div>
     <button
       *ngIf="_botonCarritoQuitar"
-      class="text-button"
+      class="text-button boton-del-carrito"
       (click)="delCarrito()"
     >
       Quitar del carrito

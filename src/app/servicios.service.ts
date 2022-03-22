@@ -34,8 +34,12 @@ export class ServiciosService {
     return this._http.post(this.apiURL + "/" + ws, param);
   }
 
-  wsWhatsApp(mesaje: string): Observable<any>  {
-    return this._http.get('https://api.whatsapp.com/send?phone=+528331545422&text=hola%20bb')
+  wsWhatsApp(mensaje: string): void  {
+    console.log("servicio", mensaje);
+    let mensajeWhatApp: string = 'https://api.whatsapp.com/send?phone='+mensaje;
+
+    //return this._http.get(mensajeWhatApp);
+    window.open(mensajeWhatApp);
     
   }
 

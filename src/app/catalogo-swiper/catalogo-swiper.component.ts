@@ -47,6 +47,7 @@ export class CatalogoSwiperComponent implements OnInit{
     let articuloVenta = JSON.stringify(articulo)
     sessionStorage.setItem("articuloVenta", articuloVenta);
     sessionStorage.setItem("ventanaAnterior", "catalogo");
+
     this._router.navigate(['/articuloventa']) ;
   }
 

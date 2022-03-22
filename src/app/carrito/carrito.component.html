@@ -1,0 +1,49 @@
+<div class="grid-container-carrito">
+  <div
+    *ngFor="let item of _carritoList"
+    class="grid-conteiner-articulo"
+    (click)="articuloVenta(item.articulo)"
+  >
+    <div
+      class="grid-item-carrito tall"
+      [ngStyle]="{
+        'background-image': 'url(\'' + transform(item.articulo.imagenes) + '\')'
+      }"
+    >
+      <div class="overlay"></div>
+    </div>
+    <div class="datos-compra">
+      <span>{{ item.articulo.nomArticulo }}</span>
+      <span>precio: {{ item.articulo.precio | currency }}</span>
+      <span>cantidad: {{ item.cantidad }}</span>
+      <span>importe: {{ item.importe | currency }} </span>
+    </div>
+    <div>
+      <button (click)="delCarrito(item.articulo)">
+        <i class="fa-solid fa-trash-can"></i>
+      </button>
+    </div>
+  </div>
+  <hr />
+  <span>Importe Total: {{ _importeTotal | currency }}</span>
+  <hr />
+  <input
+    type="text"
+    placeholder="Nombre del cliente"
+    [(ngModel)]="_datosCliente.nomCliente"
+  />
+  <input
+    type="text"
+    placeholder="Teléfono"
+    [(ngModel)]="_datosCliente.telefono"
+  />
+  <input
+    type="text"
+    placeholder="Dirección"
+    [(ngModel)]="_datosCliente.direccion"
+  />
+  <hr />
+  <button class="text-button boton-pedido" (click)="generarPedidos()">
+    Enviar pedido WhatsApp
+  </button>
+</div>

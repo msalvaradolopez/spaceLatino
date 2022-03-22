@@ -88,7 +88,7 @@ export class ArticuloVentaComponent implements OnInit, AfterViewInit {
   }    
 
   addCarrito() {    
-    let addCarritoAccion = new VentaAcciones(this._articulo, this._carrito);
+    let addCarritoAccion = new VentaAcciones(this._articulo, this._carrito, null);
 
     let ctdVentaCarrito: number = this._ctdVenta;
     if (ctdVentaCarrito < 1) {
@@ -105,7 +105,7 @@ export class ArticuloVentaComponent implements OnInit, AfterViewInit {
   }
 
   getCarrito() {
-    let accionesCarrito = new VentaAcciones(this._articulo, this._carrito);
+    let accionesCarrito = new VentaAcciones(this._articulo, this._carrito, null);
 
     let carritoDatos = accionesCarrito.getCarrito();
 
@@ -130,16 +130,17 @@ export class ArticuloVentaComponent implements OnInit, AfterViewInit {
   }  
 
   delCarrito() {
-    let accionesCarrito = new VentaAcciones(this._articulo, this._carrito);
+    let accionesCarrito = new VentaAcciones(this._articulo, this._carrito, null);
 
     this._carrito = accionesCarrito.delCarrito();
-    /*
-    console.log("informacion del carrito.");
-    console.log(this._carrito);
-    */
+    
     // ASIGNA EL NUEVO VALOR DEL CARRITO A LA SESSION
     sessionStorage.setItem("_carrito", JSON.stringify(this._carrito));    
-    this._router.navigate([this._ventanAnterior]) ;
+    if (this._ventanAnterior == "catalogo") {
+      this._servicios.swiper(true);
+      this._router.navigate(["/loader"]) ;
+    } else
+      this._router.navigate([this._ventanAnterior]) ;
   }
 
   // RECIBR TRUE-INCREMENTA , FALSE-DISMINUYE

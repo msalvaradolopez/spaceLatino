@@ -1,0 +1,62 @@
+/* CARRITO */
+.grid-container-carrito {
+  display: grid;
+  grid-template-columns: 100%;
+  /* grid-auto-rows: minmax(100px, auto);*/
+  gap: 10px;
+  padding: 10px;
+  /* grid-auto-flow: dense; */
+}
+
+.grid-conteiner-articulo {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  /* grid-auto-rows: minmax(100px, auto); */
+  gap: 10px;
+  padding: 10px;
+  /* grid-auto-flow: dense; */
+}
+
+.grid-item-carrito {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #03afff;
+  border-radius: 4px;
+  transition: transform 0.3s ease-in-out;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  height: 100px;
+}
+
+.datos-compra {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
+  font-family: Roboto;
+  /* font-size: larger; */
+  color: black;
+  text-align: left;
+  /* white-space: nowrap; */
+  overflow: hidden;
+  /* font-size: large; */
+  /* position: absolute; */
+  /* bottom: 0;
+    color: white; */
+  /* background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5));*/
+  /* width: 95%; */
+  /* padding: 10%; */
+  /* border-radius: 5%; */
+  /* z-index: 2; */
+}
+
+.boton-pedido {
+  color: #25d366;
+  border: 1px solid #25d366;
+}

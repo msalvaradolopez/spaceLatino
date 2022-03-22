@@ -1,11 +1,12 @@
-import { Iarticulo, Icarrito } from "./modelo-db";
+import { Iarticulo, Icarrito, IdatosCliente, Ipedido } from "./modelo-db";
+import { ServiciosService } from "./servicios.service";
 
 export class VentaAcciones {
     private cantidad: number;
     private _articulo: Iarticulo;
     private _carrito: Icarrito[];
 
-    constructor(private pArticulo: Iarticulo, private pCarrito: Icarrito[]){
+    constructor(private pArticulo: Iarticulo, private pCarrito: Icarrito[], private _servicios: ServiciosService){
         this._articulo = pArticulo;
         this._carrito = pCarrito;
     }
@@ -69,6 +70,23 @@ export class VentaAcciones {
 
     importeVenta() {
         return this._carrito.reduce((total, item) => total + item.importe, 0);
+    }
+
+    generarPedido(datosCliente: IdatosCliente): string {
+        let pedido: Ipedido = {idPedido: 0, datosCliente: datosCliente, carrito: this._carrito};
+
+        // SE CREA LA CADENA STRING PARA ENVIAR POR WHATSAPP
+        let nomCliente: string = pedido.datosCliente.nomCliente;
+        let Direccion: string = pedido.datosCliente.direccion;
+        let telefono: string = pedido.datosCliente.telefono;
+
+        return telefono +"&text=" + "hola%20" + "Soy%20"+ nomCliente + "%0A"
+                                + "Favor%20de%20surtir%20el%20siguiente%20pedido:"+ "%0A";
+
+        // this._servicios.wsWhatsApp(mensaje);
+
+
+        // GUARDAR PEDIDO EN BASE DE DATOS.
     }
 
 }

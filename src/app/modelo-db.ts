@@ -19,10 +19,16 @@ export interface Iarticulo {
     imagenes: Iimagen[]
 }
 
+export interface IdatosCliente {
+    nomCliente: string;
+    telefono: string;
+    direccion: string;
+}
+
 export interface Ipedido {
     idPedido: number;
-    nomCliente: string;
-    carrito: Icarrito;
+    datosCliente: IdatosCliente;
+    carrito: Icarrito[];
 }
 
 export interface Icarrito {
