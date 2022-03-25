@@ -2,7 +2,7 @@
   <div
     class="grid-item-articulo tall-articulo-venta"
     [ngStyle]="{
-      'background-image': 'url(\'' + transform(_articulo.imagenes) + '\')'
+      'background-image': 'url(\'' + _articulo.imagen + '\')'
     }"
   >
     <div class="overlay"></div>
@@ -33,7 +33,7 @@
   </div>
   <hr />
   <div class="desc-articulo">
-    <span> Estado: </span>
+    <span> Artículo: </span>
     <span>
       {{ _nombreTipo }}
     </span>
@@ -44,11 +44,11 @@
     <div class="importe-articulo">importe: {{ _impVenta | currency }}</div>
     <div class="product-count">
       <button
-        class="no-active botones-compra"
+        class="no-active botones-cantidad"
         (click)="ctdVentaBoton(false)"
         [disabled]="_ctdDisminuyeDisable"
       >
-        <i class="fa-solid fa-minus fa-2x"></i>
+        <i class="fa-solid fa-minus"></i>
       </button>
       <input
         type="text"
@@ -60,9 +60,9 @@
       <button
         (click)="ctdVentaBoton(true)"
         [disabled]="_ctdAumentaDisable"
-        class="botones-compra"
+        class="botones-cantidad"
       >
-        <i class="fa-solid fa-plus fa-2x"></i>
+        <i class="fa-solid fa-plus"></i>
       </button>
     </div>
   </div>

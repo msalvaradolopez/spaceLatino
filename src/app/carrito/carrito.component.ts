@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { Iarticulo, Icarrito, IdatosCliente, Iimagen } from '../modelo-db';
+import { Iarticulo, Icarrito, Iimagen, Ipedido } from '../modelo-db';
 import { ServiciosService } from '../servicios.service';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -21,7 +21,7 @@ export class CarritoComponent implements OnInit, AfterViewInit {
   _ventanAnterior: string = "";
   _importeTotal: number = 0.00;
   _articulo: Iarticulo = null;
-  _datosCliente: IdatosCliente = {nomCliente: "", telefono: "", direccion: ""};
+  _pedido: Ipedido = {idUsuario: "", telefono: "", direccion: "", notas: "", carrito: []};
 
   constructor(private _servicios: ServiciosService, private _toastr: ToastrService, private _router: Router, private sanitizer:DomSanitizer) { }
 
@@ -82,17 +82,20 @@ export class CarritoComponent implements OnInit, AfterViewInit {
 
     if(importeTotal)
       this._importeTotal = importeTotal;
+    else 
+    this._importeTotal = 0.00;
   }
 
 
   generarPedidos() {
     // validaciones
-    let nomcliente: string = this._datosCliente.nomCliente;
-    let telefono: string = this._datosCliente.telefono;
-    let direccion: string = this._datosCliente.direccion;
+    let idUsuario: string = this._pedido.idUsuario;
+    let telefono: string = this._pedido.telefono;
+    let direccion: string = this._pedido.direccion;
+    let notas: string = this._pedido.notas;
 
-    if (!nomcliente) {
-      this._toastr.info("Falta Nombre cliente.");
+    if (!idUsuario) {
+      this._toastr.info("Falta Usuario.");
       return;
     }
      
@@ -102,9 +105,8 @@ export class CarritoComponent implements OnInit, AfterViewInit {
     }
 
     let accionesCarrito = new VentaAcciones(this._articulo, this._carritoList, null);
-    let mensajeWhatsApp = accionesCarrito.generarPedido(this._datosCliente);
+    let mensajeWhatsApp = accionesCarrito.generarPedido(this._pedido);
 
-    this._servicios.wsWhatsApp(mensajeWhatsApp);
   }
   
   //Call this method in the image source, it will sanitize it.

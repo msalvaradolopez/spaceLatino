@@ -47,11 +47,16 @@
 }
 
 .boton-add-carrito {
-  color: #ffc145;
-  border: 1px solid #ffc145;
+  color: red;
+  border: 1px solid red;
 }
 
 .boton-del-carrito {
+  color: blue;
+  border: 1px solid blue;
+}
+
+.botones-cantidad {
   color: red;
   border: 1px solid red;
 }

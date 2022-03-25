@@ -1,3 +1,42 @@
-<header class="menu-header">
-  <i class="fa-solid fa-magnifying-glass boton-menu-footer">Buscar</i>
+<header
+  id="topmenu"
+  class="menu-header"
+  [style.position]="_menuTopiconos.menuFijo ? 'fixed' : 'static'"
+>
+  <i *ngIf="_menuTopiconos.btnMenu" class="fa-solid fa-bars"></i>
+
+  <i
+    *ngIf="_menuTopiconos.btnRegresar"
+    class="fa-solid fa-angle-left"
+    (click)="accionRegresar()"
+  >
+    <span class="letra-lg">Atrás</span></i
+  >
+  <span *ngIf="_menuTopiconos.titulo" class="valor-titulo">{{
+    _valorTitulo
+  }}</span>
+  <div *ngIf="_inputBuscar" class="search-wrapper">
+    <input
+      id="buscar"
+      #inputBuscar
+      type="text"
+      name="focus"
+      required
+      class="search-box"
+      placeholder="buscar..."
+      autocomplete="off"
+      (keyup)="onKeypressEvent($event)"
+    />
+  </div>
+  <i
+    *ngIf="_menuTopiconos.btnBuscar"
+    (click)="accionLupa()"
+    class="fa-solid fa-magnifying-glass"
+  ></i>
+  <i
+    *ngIf="_menuTopiconos.btnCerrar"
+    (click)="accionCerrar()"
+    class="fa-solid fa-xmark"
+  ></i>
+  <i *ngIf="_menuTopiconos.btnConfig" class="fa-solid fa-ellipsis"></i>
 </header>

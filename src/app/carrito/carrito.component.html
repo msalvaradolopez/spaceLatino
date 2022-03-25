@@ -7,7 +7,7 @@
     <div
       class="grid-item-carrito tall"
       [ngStyle]="{
-        'background-image': 'url(\'' + transform(item.articulo.imagenes) + '\')'
+        'background-image': 'url(\'' + item.articulo.imagen + '\')'
       }"
     >
       <div class="overlay"></div>
@@ -27,23 +27,11 @@
   <hr />
   <span>Importe Total: {{ _importeTotal | currency }}</span>
   <hr />
-  <input
-    type="text"
-    placeholder="Nombre del cliente"
-    [(ngModel)]="_datosCliente.nomCliente"
-  />
-  <input
-    type="text"
-    placeholder="Teléfono"
-    [(ngModel)]="_datosCliente.telefono"
-  />
-  <input
-    type="text"
-    placeholder="Dirección"
-    [(ngModel)]="_datosCliente.direccion"
-  />
+  <input type="text" placeholder="Teléfono" [(ngModel)]="_pedido.telefono" />
+  <input type="text" placeholder="Dirección" [(ngModel)]="_pedido.direccion" />
+  <input type="text" placeholder="Notas" [(ngModel)]="_pedido.notas" />
   <hr />
   <button class="text-button boton-pedido" (click)="generarPedidos()">
-    Enviar pedido WhatsApp
+    Generar pedido
   </button>
 </div>

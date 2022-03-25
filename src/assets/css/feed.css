@@ -1,0 +1,15 @@
+.feed-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-perfil {
+  width: 100%;
+  height: 150px;
+}
+
+.feed-menu {
+  display: flex;
+  justify-content: space-around;
+  height: 60;
+}

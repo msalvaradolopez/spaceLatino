@@ -16,6 +16,7 @@ import { MenuHeaderSwiperComponent } from './menu-header-swiper/menu-header-swip
 import { LoaderComponent } from './loader/loader.component';
 import { ArticuloVentaComponent } from './articulo-venta/articulo-venta.component';
 import { CarritoComponent } from './carrito/carrito.component';
+import { FeedNegocioComponent } from './feed-negocio/feed-negocio.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CarritoComponent } from './carrito/carrito.component';
     MenuHeaderSwiperComponent,
     LoaderComponent,
     ArticuloVentaComponent,
-    CarritoComponent
+    CarritoComponent,
+    FeedNegocioComponent
   ],
   imports: [
     BrowserModule,

@@ -27,10 +27,7 @@ export class CatalogoSwiperComponent implements OnInit{
   constructor(private _servicios: ServiciosService, private _toastr: ToastrService, private _router: Router, private sanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
-    
-    // ACTIVA ICONOS DEL MENU TOP
-    //this._servicios.menuTopIconos({menu: true, titulo: true, buscar: true, cerrar: false, regresar: false, config: true, valorTitulo: ""})
-
+  
     this._idEmpresa = parseInt(sessionStorage.getItem("idEmpresa"));
 
     this._subSwiper = this._servicios.swiper$

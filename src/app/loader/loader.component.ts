@@ -22,13 +22,20 @@ export class LoaderComponent implements OnInit {
 
   ngOnInit(): void {
     sessionStorage.setItem("nomEmpresa", "Space-Latino")
-
-
     sessionStorage.setItem("idEmpresa", "1");
 
-
+    // ACTIVA ICONOS DEL MENU TOP
+    this._servicios.menuTopIconos({menuFijo: true,
+      btnMenu : true,
+      titulo: true,
+      btnBuscar: true,
+      btnCerrar: false,
+      btnRegresar: false,
+      btnConfig: true,
+      valorTitulo: ""});
+      
     this._idEmpresa = parseInt(sessionStorage.getItem("idEmpresa"));
-    this._servicios.wsGeneral("getArticulos", { idEmpresa: this._idEmpresa, nomArticulo: this._nomArticulo })
+    this._servicios.wsGeneral("getArticulos", { idEmpresa: this._idEmpresa, orden: 'RE', idCategoria: '0', idMarca: '0',  buscar: "" })
       .subscribe(x => {
         this._articulosList = x;
       }, error => this._toastr.error("Error : " + error.error.ExceptionMessage, "Sucursal")
