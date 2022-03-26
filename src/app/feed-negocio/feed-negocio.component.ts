@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ServiciosService } from '../servicios.service';
-import { Iempresa } from '../modelo-db';
+import { Iempresa, Iarticulo} from '../modelo-db';
 
 @Component({
   selector: 'app-feed-negocio',
@@ -15,6 +15,7 @@ export class FeedNegocioComponent implements OnInit, AfterViewInit {
 
   _idEmpresa: number;
   _empresa: Iempresa = null;
+  _articulosList: Iarticulo[] = [];
 
   constructor(private _servicios: ServiciosService, private _toastr: ToastrService, private _router: Router, private sanitizer:DomSanitizer) { }
 
@@ -31,6 +32,8 @@ export class FeedNegocioComponent implements OnInit, AfterViewInit {
       valorTitulo: ""});
       
     this._idEmpresa = parseInt(sessionStorage.getItem("idEmpresa"));
+    this._articulosList = JSON.parse(sessionStorage.getItem("articulosList"));
+    
 
     this._servicios.wsGeneral("getEmpresas", { idEmpresa: this._idEmpresa, orden: "A", buscar: "" })
       .subscribe(x => {

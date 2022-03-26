@@ -1,19 +1,31 @@
 <div class="feed-container">
-  <div class="feed-perfil">
-    <span>Nombre: {{ _empresa.razonsocial }}</span>
-    <span>Descripción: {{ _empresa.descNegocio }}</span>
-    <span>EMAIL: {{ _empresa.email }}</span>
-    <span>FB: {{ _empresa.urlFaceBook }}</span>
-    <span>IG: {{ _empresa.urlInstagram }}</span>
-    <span>ctdArticuos: {{ _empresa.ctdArticulos }}</span>
-    <span>ctdUsuario: {{ _empresa.ctdUsuarios }}</span>
+  <div
+    class="feed-perfil"
+    [ngStyle]="{
+      'background-image': 'url(\'' + _empresa.urlImagen + '\')'
+    }"
+  >
+    <div class="overlay"></div>
   </div>
-  <hr>
+  <hr />
   <div class="feed-menu">
     <a>Artículos</a>
-    <a>Calasificación</a>
+    <a>Catálogos</a>
     <a>Marcas</a>
   </div>
-  <hr>
-  <div class="feed-articulos"></div>
+  <hr />
+  <div class="feed-articulos">
+    <div
+      *ngFor="let item of _articulosList"
+      class="feed-item"
+      [ngStyle]="{
+        'background-image': 'url(\'' + item.imagen + '\')'
+      }"
+    >
+      <div class="overlay"></div>
+      <div class="articulo-titulo">
+        <span class="feed-texto">{{ item.nomArticulo }}</span>
+      </div>
+    </div>
+  </div>
 </div>
