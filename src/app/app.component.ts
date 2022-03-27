@@ -9,10 +9,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'spaceLatino';
 
+  _idEmpresa: string = "1";
+
   constructor( ) { }
 
   ngOnInit(): void {
 
-      
+      sessionStorage.setItem("idEmpresa", this._idEmpresa);
   }
 }

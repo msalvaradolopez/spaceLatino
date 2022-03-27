@@ -17,10 +17,10 @@ export class LoaderComponent implements OnInit {
   _articulosList: Iarticulo[] = [];
   _nomArticulo: string = "";
 
-
   constructor(private _servicios: ServiciosService, private _toastr: ToastrService, private _router: Router, private sanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
+    
     sessionStorage.setItem("nomEmpresa", "Space-Latino")
     sessionStorage.setItem("idEmpresa", "1");
 
@@ -34,17 +34,17 @@ export class LoaderComponent implements OnInit {
       btnConfig: true,
       valorTitulo: ""});
       
+
     this._idEmpresa = parseInt(sessionStorage.getItem("idEmpresa"));
-    this._servicios.wsGeneral("getArticulos", { idEmpresa: this._idEmpresa, orden: 'RE', idCategoria: '0', idMarca: '0',  buscar: "" })
+
+    this._servicios.wsGeneral("getArticulos", { idEmpresa: this._idEmpresa, orden: 'RE', idCategoria: "0", idMarca: "0",  buscar: "" })
       .subscribe(x => {
         this._articulosList = x;
       }, error => this._toastr.error("Error : " + error.error.ExceptionMessage, "Sucursal")
       , () => {
         sessionStorage.setItem("articulosList", JSON.stringify(this._articulosList));
-        this._servicios.swiper(true);
-      });
-
+        this._router.navigate(["/swiper"]) ;
+      });      
       
   }
-
 }

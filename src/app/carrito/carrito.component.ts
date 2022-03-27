@@ -31,7 +31,14 @@ export class CarritoComponent implements OnInit, AfterViewInit {
     this._idEmpresa = parseInt(sessionStorage.getItem("idEmpresa"));
 
     // ACTIVA ICONOS DEL MENU TOP
-    this._servicios.menuTopIconos({menu: true, titulo: true, buscar: false, cerrar: false, regresar: true, config: true, valorTitulo: "Carrito"});
+    this._servicios.menuTopIconos({menuFijo: false,
+      btnMenu : true,
+      titulo: true,
+      btnBuscar: false,
+      btnCerrar: false,
+      btnRegresar: false,
+      btnConfig: true,
+      valorTitulo: "Carrito"});
 
     
     // acciones llamadas desde el menuTop
@@ -39,7 +46,7 @@ export class CarritoComponent implements OnInit, AfterViewInit {
     .subscribe(resp => {
       if (resp == "regresar" && this._ventanAnterior == "catalogo") {
         this._servicios.swiper(true);
-        this._router.navigate(["/loader"]) ;
+        // this._router.navigate(["/loader"]) ;
       }
         
       else

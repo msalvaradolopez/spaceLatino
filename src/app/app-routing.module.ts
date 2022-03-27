@@ -9,10 +9,11 @@ import { LoaderComponent } from './loader/loader.component';
 
 
 const routes: Routes = [
-  {path: "loader", component: LoaderComponent},
   {path: "articuloventa", component: ArticuloVentaComponent},
   {path: "carrito", component: CarritoComponent},
   {path: "feed", component: FeedNegocioComponent},
+  {path: "swiper", component: CatalogoSwiperComponent},
+  {path: "loader", component: LoaderComponent},
   { path: '', redirectTo: 'loader', pathMatch: 'full' }
 ];
 

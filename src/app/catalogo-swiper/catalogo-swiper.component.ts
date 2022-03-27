@@ -14,7 +14,7 @@ declare var $: any;
   templateUrl: './catalogo-swiper.component.html',
   styleUrls: ['./catalogo-swiper.component.css']
 })
-export class CatalogoSwiperComponent implements OnInit{
+export class CatalogoSwiperComponent implements OnInit, AfterViewInit{
 
   _idEmpresa: number = 0;
   _articulosList: Iarticulo[] = [];
@@ -23,6 +23,8 @@ export class CatalogoSwiperComponent implements OnInit{
   _subSwiper: Subscription;
   _swiperShow: boolean = false;
 
+  _swiperObj: any; 
+
 
   constructor(private _servicios: ServiciosService, private _toastr: ToastrService, private _router: Router, private sanitizer:DomSanitizer) { }
 
@@ -30,20 +32,48 @@ export class CatalogoSwiperComponent implements OnInit{
   
     this._idEmpresa = parseInt(sessionStorage.getItem("idEmpresa"));
 
+    this._articulosList = JSON.parse(sessionStorage.getItem("articulosList"));
+    this._articuloVenta = JSON.parse( sessionStorage.getItem("articuloVenta"));
+
+    // ACTIVA ICONOS DEL MENU TOP
+    this._servicios.menuTopIconos({menuFijo: true,
+      btnMenu : true,
+      titulo: true,
+      btnBuscar: false,
+      btnCerrar: false,
+      btnRegresar: false,
+      btnConfig: true,
+      valorTitulo: ""});
+
+      /*
+    if(!this._articulosList)
+      this._servicios.wsGeneral("getArticulos", { idEmpresa: this._idEmpresa, orden: 'RE', idCategoria: "0", idMarca: "0",  buscar: "" })
+        .subscribe(x => {
+          this._articulosList = x;
+        }, error => this._toastr.error("Error : " + error.error.ExceptionMessage, "Articulos")
+        , () => {
+          sessionStorage.setItem("articulosList", JSON.stringify(this._articulosList));
+          console.log("SEGUNDO",this._articulosList);
+          this.swiperShow(true, null);
+        });      
+*/
+    /*
     this._subSwiper = this._servicios.swiper$
     .subscribe(resp => {
       this._articulosList = JSON.parse(sessionStorage.getItem("articulosList"));
+      console.log("swiper", this._articulosList);
       this._articuloVenta = JSON.parse( sessionStorage.getItem("articuloVenta"));
+      // window.location.reload();
       this.swiperShow(resp, this._articuloVenta);
     });
-    
+    */
   }
 
   
   articuloVenta(articulo: Iarticulo) {
     let articuloVenta = JSON.stringify(articulo)
     sessionStorage.setItem("articuloVenta", articuloVenta);
-    sessionStorage.setItem("ventanaAnterior", "catalogo");
+    sessionStorage.setItem("ventanaAnterior", "swiper");
 
     this._router.navigate(['/articuloventa']) ;
   }
@@ -60,14 +90,16 @@ export class CatalogoSwiperComponent implements OnInit{
     return urlImagen;
   }  
   
-  ngOnDestroy() {
-      this._subSwiper.unsubscribe();
-  }
 
   swiperShow(accion: boolean, articuloVenta: Iarticulo) {
     this._swiperShow = accion;
     if (accion) {
-      const swiper = new Swiper('.swiper', {
+
+      // if(this._swiperObj)
+        // this._swiperObj.destroy();
+      
+      // if(!this._swiperObj)
+        this._swiperObj = new Swiper('.swiper', {
         // Optional parameters
         direction: 'vertical',
         loop: false,
@@ -78,14 +110,19 @@ export class CatalogoSwiperComponent implements OnInit{
           el: '.swiper-scrollbar',
         },
         grabCursor: true
-      });  
-  
-      if(articuloVenta) {
-        let idx = this._articulosList.map(ren => ren.idArticulo).indexOf(articuloVenta.idArticulo);
-        if (idx) 
-          swiper.activeIndex = idx;
-      }
+        });  
+
+        if(articuloVenta) {
+          let idx = this._articulosList.map(ren => ren.idArticulo).indexOf(articuloVenta.idArticulo);
+          if (idx)  
+            this._swiperObj.slideTo(idx, 0, true);
+          else
+            this._swiperObj.slideTo(0, 0, true);
+        }
     }
-    
+  }
+
+  ngAfterViewInit(): void {
+    this.swiperShow(true, this._articuloVenta);
   }
 }

@@ -2,7 +2,7 @@ export interface Iimagen {
     idImagen: number;
     idEmpresa: number;
     nomImagen: string;
-    urlImagen: string;
+    urlImagen?: string;
     principal: string;
 }
 
@@ -29,7 +29,7 @@ export interface Iarticulo {
     rebaja: string;
     relevancia: string;
     promo: string;
-    imagen: string;
+    imagen?: string;
 }
 
 
@@ -79,7 +79,20 @@ export interface Iempresa {
     visitas: number;
     fechaUtimaVisita: Date;
     descNegocio: string;
-    urlImagen: string;
+    urlImagen?: string;
     ctdArticulos: number;
     ctdUsuarios: number;
+}
+
+
+export interface Icatalogo {
+    idCategoria: string;
+    idEmrpesa: number;
+    imagen?: Iimagen;
+}
+
+export interface Imarca {
+    idMarca: string;
+    idEmpresa: number;
+    imagen?: Iimagen;
 }

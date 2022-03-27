@@ -59,7 +59,7 @@ export class ArticuloVentaComponent implements OnInit, AfterViewInit {
 
     // ACTIVA ICONOS DEL MENU TOP
     this._servicios.menuTopIconos({menuFijo: false,
-      btnMenu : true,
+      btnMenu : false,
       titulo: true,
       btnBuscar: false,
       btnCerrar: false,
@@ -70,10 +70,7 @@ export class ArticuloVentaComponent implements OnInit, AfterViewInit {
     // acciones llamadas desde el menuTop
     this._subIconosAcciones = this._servicios.iconosAcciones$
     .subscribe(resp => {
-      if (resp == "regresar" && this._ventanAnterior == "catalogo") {
-        this._servicios.swiper(true);
-        this._router.navigate(["/loader"]);
-      } else
+      if (resp == "regresar") 
         this._router.navigate([this._ventanAnterior]) ;
     });
 

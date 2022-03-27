@@ -9,22 +9,63 @@
   </div>
   <hr />
   <div class="feed-menu">
-    <a>Artículos</a>
-    <a>Catálogos</a>
-    <a>Marcas</a>
+    <a (click)="getArticulos(true)">Todos</a>
+    <a (click)="getCatalogos()">{{ _tituloCatalogo }}</a>
+    <a (click)="getMarcas()">{{ _tituloMarca }}</a>
   </div>
   <hr />
-  <div class="feed-articulos">
+  <div *ngIf="_showArticulos" class="feed-articulos">
     <div
-      *ngFor="let item of _articulosList"
+      *ngFor="let articulo of _articulosList"
       class="feed-item"
       [ngStyle]="{
-        'background-image': 'url(\'' + item.imagen + '\')'
+        'background-image': 'url(\'' + articulo.imagen + '\')'
       }"
+      (click)="swiper(articulo)"
     >
       <div class="overlay"></div>
       <div class="articulo-titulo">
-        <span class="feed-texto">{{ item.nomArticulo }}</span>
+        <span class="feed-texto">{{ articulo.nomArticulo }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    Catalogos
+  -->
+
+  <div *ngIf="_showCatalogos" class="feed-articulos">
+    <div
+      *ngFor="let catalogo of _catalogosList"
+      class="feed-item"
+      [ngStyle]="{
+        'background-image': 'url(\'' + catalogo.imagen.urlImagen + '\')'
+      }"
+      (click)="getArticuloCatalogo(catalogo.idCategoria)"
+    >
+      <div class="overlay"></div>
+      <div class="articulo-titulo">
+        <span class="feed-texto">{{ catalogo.idCategoria }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    Marcas
+  -->
+
+  <div *ngIf="_showMarcas" class="feed-articulos">
+    <div
+      *ngFor="let marca of _marcasList"
+      class="feed-item"
+      [ngStyle]="{
+        'background-image': 'url(\'' + marca.imagen.urlImagen + '\')'
+      }"
+      (click)="getArticuloMarca(marca.idMarca)"
+    >
+      <div class="overlay"></div>
+      <div class="articulo-titulo">
+        <span class="feed-texto">{{ marca.idMarca }}</span>
       </div>
     </div>
   </div>
