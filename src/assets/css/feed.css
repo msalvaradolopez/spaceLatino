@@ -29,6 +29,8 @@
   height: 40px;
   align-items: center;
   font-size: small;
+  background-color: white;
+  color: black;
 }
 
 .feed-articulos {

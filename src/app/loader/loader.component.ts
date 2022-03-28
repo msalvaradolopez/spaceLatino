@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ServiciosService } from '../servicios.service';
-import { Iarticulo } from '../modelo-db';
+import { Iarticulo, Iempresa } from '../modelo-db';
 
 @Component({
   selector: 'app-loader',
@@ -14,6 +14,7 @@ import { Iarticulo } from '../modelo-db';
 export class LoaderComponent implements OnInit {
 
   _idEmpresa: number = 0;
+  _empresa: Iempresa;
   _articulosList: Iarticulo[] = [];
   _nomArticulo: string = "";
 
@@ -44,7 +45,14 @@ export class LoaderComponent implements OnInit {
       , () => {
         sessionStorage.setItem("articulosList", JSON.stringify(this._articulosList));
         this._router.navigate(["/swiper"]) ;
-      });      
+      });    
+      
+    this._servicios.wsGeneral("getEmpresas", { idEmpresa: this._idEmpresa, orden: "A", buscar: "" })
+      .subscribe(x => {
+        this._empresa = x[0];
+      }, error => this._toastr.error("Error : " + error.error.ExceptionMessage, "Empresa")
+      , () => sessionStorage.setItem("empresa", JSON.stringify(this._empresa))
+      );
       
   }
 }

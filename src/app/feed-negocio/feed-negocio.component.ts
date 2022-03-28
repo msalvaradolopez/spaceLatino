@@ -46,11 +46,8 @@ export class FeedNegocioComponent implements OnInit {
       
     this._idEmpresa = parseInt(sessionStorage.getItem("idEmpresa"));
     this._articulosList = JSON.parse(sessionStorage.getItem("articulosList"));
+    this._empresa = JSON.parse(sessionStorage.getItem("empresa"));
 
-    this._servicios.wsGeneral("getEmpresas", { idEmpresa: this._idEmpresa, orden: "A", buscar: "" })
-      .subscribe(x => {
-        this._empresa = x[0];
-      }, error => this._toastr.error("Error : " + error.error.ExceptionMessage, "Empresa"));
   }
 
   getArticulos(todos: boolean) {

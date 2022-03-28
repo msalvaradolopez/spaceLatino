@@ -1,7 +1,8 @@
 <header
   id="topmenu"
-  class="menu-header"
-  [style.position]="_menuTopiconos.menuFijo ? 'fixed' : 'static'"
+  [ngClass]="
+    _menuTopiconos.menuFijo ? 'menu-header-fixed' : 'menu-header-no-fixed'
+  "
 >
   <i *ngIf="_menuTopiconos.btnMenu" class="fa-solid fa-bars"></i>
 
@@ -38,5 +39,5 @@
     (click)="accionCerrar()"
     class="fa-solid fa-xmark"
   ></i>
-  <i *ngIf="_menuTopiconos.btnConfig" class="fa-solid fa-ellipsis"></i>
+  <i *ngIf="_menuTopiconos.btnConfig" class="fa-solid fa-ellipsis-vertical"></i>
 </header>
