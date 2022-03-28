@@ -28,6 +28,9 @@ export class ServiciosService {
   private _swiper = new Subject<boolean>();
   swiper$ = this._swiper.asObservable();
 
+  private _msgPopupOk = new Subject<string>();
+  msgPopupOk$ = this._msgPopupOk.asObservable();
+
   constructor(private _http: HttpClient, private _router: Router) { }
 
   wsGeneral(ws: string, param: any ): Observable<any> {
@@ -61,6 +64,10 @@ export class ServiciosService {
 
   swiper(accion: boolean) {
     this._swiper.next(accion);
+  }
+
+  msgPopupOk(mensaje: string) {
+    this._msgPopupOk.next(mensaje);
   }
 
 }

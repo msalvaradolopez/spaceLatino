@@ -122,6 +122,10 @@ export class CatalogoSwiperComponent implements OnInit, AfterViewInit{
     }
   }
 
+  addFavorito(articulo: Iarticulo) {
+    this._servicios.msgPopupOk("Agregado a favorito.");
+  }
+
   ngAfterViewInit(): void {
     this.swiperShow(true, this._articuloVenta);
   }

@@ -17,6 +17,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { ArticuloVentaComponent } from './articulo-venta/articulo-venta.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { FeedNegocioComponent } from './feed-negocio/feed-negocio.component';
+import { PopupOkComponent } from './popup-ok/popup-ok.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FeedNegocioComponent } from './feed-negocio/feed-negocio.component';
     LoaderComponent,
     ArticuloVentaComponent,
     CarritoComponent,
-    FeedNegocioComponent
+    FeedNegocioComponent,
+    PopupOkComponent
   ],
   imports: [
     BrowserModule,

@@ -203,6 +203,7 @@ input:hover {
 .boton-menu-footer {
   display: flex;
   flex-direction: column;
+  text-decoration: none;
   -webkit-tap-highlight-color: transparent;
   transition: background-color 0.1s ease-in-out;
   color: var(--text-color);
