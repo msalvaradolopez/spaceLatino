@@ -104,6 +104,8 @@ export class ArticuloVentaComponent implements OnInit, AfterViewInit {
     // ASIGNA EL NUEVO VALOR DEL CARRITO A LA SESSION
     sessionStorage.setItem("_carrito", JSON.stringify(this._carrito));
 
+    this._servicios.msgPopupOk("Artículo agregado a tu compra.");
+
   }
 
   getCarrito() {
@@ -143,6 +145,8 @@ export class ArticuloVentaComponent implements OnInit, AfterViewInit {
       this._router.navigate(["/loader"]) ;
     } else
       this._router.navigate([this._ventanAnterior]) ;
+
+    this._servicios.msgPopupOk("Artículo eliminado de tus compras.");
   }
 
   // RECIBR TRUE-INCREMENTA , FALSE-DISMINUYE

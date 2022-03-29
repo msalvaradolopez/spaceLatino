@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 declare var Swiper: any;
 declare var $: any;
+declare var navigator:any;
 
 @Component({
   selector: 'app-catalogo-swiper',
@@ -123,7 +124,18 @@ export class CatalogoSwiperComponent implements OnInit, AfterViewInit{
   }
 
   addFavorito(articulo: Iarticulo) {
-    this._servicios.msgPopupOk("Agregado a favorito.");
+    this._servicios.login(true);
+    // this._servicios.msgPopupOk("Agregado a favorito.");
+  }
+
+  botonCompartir(){
+    const url = window.document.location.href;
+
+    navigator.share({
+      title: "prueba",
+      text: 'texto de prueba',
+      url: url,
+    }); // share the URL of MDN
   }
 
   ngAfterViewInit(): void {

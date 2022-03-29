@@ -34,6 +34,7 @@
               "src/assets/css/botonContador.css",
               "src/assets/css/feed.css",
               "src/assets/css/popup-ok.css",
+              "src/assets/css/login.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [

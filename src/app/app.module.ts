@@ -19,6 +19,14 @@ import { CarritoComponent } from './carrito/carrito.component';
 import { FeedNegocioComponent } from './feed-negocio/feed-negocio.component';
 import { PopupOkComponent } from './popup-ok/popup-ok.component';
 
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider,
+  AmazonLoginProvider,
+} from 'angularx-social-login';
+import { LoginComponent } from './login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +38,8 @@ import { PopupOkComponent } from './popup-ok/popup-ok.component';
     ArticuloVentaComponent,
     CarritoComponent,
     FeedNegocioComponent,
-    PopupOkComponent
+    PopupOkComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +48,35 @@ import { PopupOkComponent } from './popup-ok/popup-ok.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot(), // ToastrModule added
+    SocialLoginModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '1078377437989-k1pr30hef1ejet26ft1jiq8df5r4dio4.apps.googleusercontent.com'
+            ),
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('561602290896109'),
+          },
+          {
+            id: AmazonLoginProvider.PROVIDER_ID,
+            provider: new AmazonLoginProvider(
+              'amzn1.application-oa2-client.f074ae67c0a146b6902cc0c4a3297935'
+            ),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,6 +5,7 @@ import { CarritoComponent } from './carrito/carrito.component';
 import { CatalogoSwiperComponent } from './catalogo-swiper/catalogo-swiper.component';
 import { FeedNegocioComponent } from './feed-negocio/feed-negocio.component';
 import { LoaderComponent } from './loader/loader.component';
+import { LoginComponent } from './login/login.component';
 
 
 

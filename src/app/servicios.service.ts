@@ -31,6 +31,9 @@ export class ServiciosService {
   private _msgPopupOk = new Subject<string>();
   msgPopupOk$ = this._msgPopupOk.asObservable();
 
+  private _login = new Subject<boolean>();
+  login$ = this._login.asObservable();
+
   constructor(private _http: HttpClient, private _router: Router) { }
 
   wsGeneral(ws: string, param: any ): Observable<any> {
@@ -68,6 +71,10 @@ export class ServiciosService {
 
   msgPopupOk(mensaje: string) {
     this._msgPopupOk.next(mensaje);
+  }
+
+  login(accion: boolean) {
+    this._login.next(accion);
   }
 
 }
