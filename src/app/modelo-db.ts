@@ -96,3 +96,7 @@ export interface Imarca {
     idEmpresa: number;
     imagen?: Iimagen;
 }
+
+export interface Ifavorito {
+    articulo: Iarticulo;
+}

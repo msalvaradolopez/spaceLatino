@@ -3,16 +3,31 @@
     <i class="fa-solid fa-house"></i>
     <span class="letra-x-sm">Artículos</span>
   </a>
-  <a class="boton-menu-footer">
-    <i class="fa-solid fa-heart"> </i>
-    <span class="letra-x-sm">Favoritos</span>
+  <a routerLink="favotiros" class="boton-menu-footer">
+    <i class="fa-solid fa-heart" [style.color]="_ctdFavotiros > 0 ? 'red' : ''">
+    </i>
+    <span class="letra-x-sm">Mis Favoritos</span>
+    <span
+      class="ctd-favoritos"
+      [style.color]="_ctdFavotiros > 0 ? 'red' : ''"
+      >{{ _ctdFavotiros }}</span
+    >
   </a>
   <a routerLink="feed" class="boton-menu-footer">
     <i class="fa-solid fa-store"> </i>
     <span class="letra-x-sm">Tienda</span>
   </a>
   <a routerLink="carrito" class="boton-menu-footer">
-    <i class="fa-solid fa-money-check-dollar"> </i>
-    <span class="letra-x-sm">Pedido</span>
+    <i
+      class="fa-solid fa-money-check-dollar"
+      [style.color]="_ctdPedidos > 0 ? 'green' : ''"
+    >
+    </i>
+    <span class="letra-x-sm">Mi Pedido</span>
+    <span
+      class="ctd-favoritos"
+      [style.color]="_ctdPedidos > 0 ? 'green' : ''"
+      >{{ _ctdPedidos }}</span
+    >
   </a>
 </footer>

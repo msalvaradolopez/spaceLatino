@@ -72,13 +72,11 @@ export class CarritoComponent implements OnInit, AfterViewInit {
     let accionesCarrito = new VentaAcciones(articulo, this._carritoList, null);
 
     this._carritoList = accionesCarrito.delCarrito();
-    this.importeTotal();
-    /*
-    console.log("informacion del carrito.");
-    console.log(this._carrito);
-    */
+    
     // ASIGNA EL NUEVO VALOR DEL CARRITO A LA SESSION
-    sessionStorage.setItem("_carrito", JSON.stringify(this._carritoList));    
+    sessionStorage.setItem("_carrito", JSON.stringify(this._carritoList));  
+
+    this.importeTotal();
   }
 
 
@@ -90,7 +88,9 @@ export class CarritoComponent implements OnInit, AfterViewInit {
     if(importeTotal)
       this._importeTotal = importeTotal;
     else 
-    this._importeTotal = 0.00;
+      this._importeTotal = 0.00;
+
+    this._servicios.actPedido();  
   }
 
 

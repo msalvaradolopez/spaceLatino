@@ -26,6 +26,7 @@ import {
   AmazonLoginProvider,
 } from 'angularx-social-login';
 import { LoginComponent } from './login/login.component';
+import { FavoritosComponent } from './favoritos/favoritos.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { LoginComponent } from './login/login.component';
     CarritoComponent,
     FeedNegocioComponent,
     PopupOkComponent,
-    LoginComponent
+    LoginComponent,
+    FavoritosComponent
   ],
   imports: [
     BrowserModule,

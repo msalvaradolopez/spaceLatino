@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ServiciosService } from '../servicios.service';
 
-import { SocialAuthService } from "angularx-social-login";
+import { SocialAuthService, SocialUser } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
  
 
@@ -11,9 +11,12 @@ import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-logi
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   _showLogin: boolean = false;
+  isLogged: boolean = false;
+  socialUser: SocialUser;
+  userLogged: SocialUser;
   _subLogin: Subscription;
 
   constructor(private authService: SocialAuthService, private _servicios: ServiciosService) { }
@@ -22,8 +25,15 @@ export class LoginComponent implements OnInit {
 
     this._subLogin = this._servicios.login$
       .subscribe(resp => {
-        this._showLogin = resp;
+
+        this.authService.authState.subscribe(
+          data => {
+            this.socialUser = data;
+            this.isLogged = (this.socialUser != null);
+          } 
+        );
         
+        this._showLogin = resp;
       });
   }
 
@@ -31,10 +41,11 @@ export class LoginComponent implements OnInit {
     this._showLogin = false;
   }
 
-    signInWithGoogle(): void {
+  signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
       data => {
-        console.log(data)
+        this.socialUser = data;
+        this.isLogged = (this.socialUser != null);
         this.regresar();
       }
     );
@@ -46,6 +57,12 @@ export class LoginComponent implements OnInit {
  
   signOut(): void {
     this.authService.signOut();
+    this.isLogged = false
+    this.socialUser = null;    
   }
+
+  ngOnDestroy(): void {
+    this._subLogin.unsubscribe();
+  }  
 
 }

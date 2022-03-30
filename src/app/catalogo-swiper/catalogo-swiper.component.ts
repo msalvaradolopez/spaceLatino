@@ -2,10 +2,11 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ServiciosService } from '../servicios.service';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
-import { Iarticulo } from '../modelo-db';
+import { Iarticulo, Ifavorito } from '../modelo-db';
 import { Iimagen } from '../modelo-db';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
 declare var Swiper: any;
 declare var $: any;
 declare var navigator:any;
@@ -27,7 +28,18 @@ export class CatalogoSwiperComponent implements OnInit, AfterViewInit{
   _swiperObj: any; 
 
 
-  constructor(private _servicios: ServiciosService, private _toastr: ToastrService, private _router: Router, private sanitizer:DomSanitizer) { }
+  socialUser: SocialUser;
+  userLogged: SocialUser;
+  isLogged: boolean = false;
+
+  _favoritos: Ifavorito[] = [];
+
+
+  constructor(private _servicios: ServiciosService, 
+    private _toastr: ToastrService, 
+    private _router: Router, 
+    private sanitizer:DomSanitizer, 
+    private authService: SocialAuthService) { }
 
   ngOnInit(): void {
   
@@ -35,6 +47,10 @@ export class CatalogoSwiperComponent implements OnInit, AfterViewInit{
 
     this._articulosList = JSON.parse(sessionStorage.getItem("articulosList"));
     this._articuloVenta = JSON.parse( sessionStorage.getItem("articuloVenta"));
+    this._favoritos = JSON.parse(sessionStorage.getItem("favoritos"));
+
+    if (!this._favoritos)
+      this._favoritos = [];
 
     // ACTIVA ICONOS DEL MENU TOP
     this._servicios.menuTopIconos({menuFijo: true,
@@ -46,28 +62,7 @@ export class CatalogoSwiperComponent implements OnInit, AfterViewInit{
       btnConfig: true,
       valorTitulo: ""});
 
-      /*
-    if(!this._articulosList)
-      this._servicios.wsGeneral("getArticulos", { idEmpresa: this._idEmpresa, orden: 'RE', idCategoria: "0", idMarca: "0",  buscar: "" })
-        .subscribe(x => {
-          this._articulosList = x;
-        }, error => this._toastr.error("Error : " + error.error.ExceptionMessage, "Articulos")
-        , () => {
-          sessionStorage.setItem("articulosList", JSON.stringify(this._articulosList));
-          console.log("SEGUNDO",this._articulosList);
-          this.swiperShow(true, null);
-        });      
-*/
-    /*
-    this._subSwiper = this._servicios.swiper$
-    .subscribe(resp => {
-      this._articulosList = JSON.parse(sessionStorage.getItem("articulosList"));
-      console.log("swiper", this._articulosList);
-      this._articuloVenta = JSON.parse( sessionStorage.getItem("articuloVenta"));
-      // window.location.reload();
-      this.swiperShow(resp, this._articuloVenta);
-    });
-    */
+
   }
 
   
@@ -124,8 +119,34 @@ export class CatalogoSwiperComponent implements OnInit, AfterViewInit{
   }
 
   addFavorito(articulo: Iarticulo) {
-    this._servicios.login(true);
-    // this._servicios.msgPopupOk("Agregado a favorito.");
+
+    let subGoogle: Subscription;
+    subGoogle = this.authService.authState.subscribe(
+                  data => {
+                    this.socialUser = data;
+                    this.isLogged = (this.socialUser != null);
+                  } 
+                );
+    
+    if(this.isLogged) {
+      if(this.getFavorito(articulo)) 
+        this._favoritos = this._favoritos.filter(x => x.articulo.idArticulo != articulo.idArticulo);
+      else 
+        this._favoritos.push({articulo: articulo});
+
+      sessionStorage.setItem("favoritos", JSON.stringify(this._favoritos));
+      this._servicios.actFavorito();
+      this._servicios.msgPopupOk("Favorito actualizado.");
+    }
+      
+    else 
+      this._servicios.login(true);
+
+    subGoogle.unsubscribe();
+  }
+
+  getFavorito(articulo: Iarticulo): boolean {
+    return (this._favoritos.filter(x => x.articulo.idArticulo == articulo.idArticulo).length > 0);
   }
 
   botonCompartir(){

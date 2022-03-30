@@ -34,6 +34,12 @@ export class ServiciosService {
   private _login = new Subject<boolean>();
   login$ = this._login.asObservable();
 
+  private _favoritos = new Subject<boolean>();
+  favoritos$ = this._favoritos.asObservable();
+
+  private _pedido = new Subject<boolean>();
+  pedido$ = this._pedido.asObservable();
+
   constructor(private _http: HttpClient, private _router: Router) { }
 
   wsGeneral(ws: string, param: any ): Observable<any> {
@@ -76,6 +82,15 @@ export class ServiciosService {
   login(accion: boolean) {
     this._login.next(accion);
   }
+
+  actFavorito(){
+    this._favoritos.next();
+  }
+
+  actPedido(){
+    this._pedido.next();
+  }
+
 
 }
 

@@ -62,7 +62,7 @@ body {
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 5;
+  z-index: 3;
   color: white;
   height: 30px;
 }
@@ -207,6 +207,8 @@ input:hover {
   -webkit-tap-highlight-color: transparent;
   transition: background-color 0.1s ease-in-out;
   color: var(--text-color);
+  position: relative;
+  width: 60px;
 }
 
 .seccion-principal {
@@ -266,4 +268,10 @@ input:hover {
   font-family: Roboto;
   font-size: x-small;
   padding: 5%;
+}
+
+.ctd-favoritos {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
