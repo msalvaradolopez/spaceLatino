@@ -1,17 +1,15 @@
 <div *ngIf="_showLogin" class="login-container">
   <span
     >Para realizar algunas acciones (ej: agregar favoritos / Generar pedidos) es
-    necesario ingresar con tu un usuario de Google</span
+    necesario ingresar con tu usuario de Google</span
   >
   <button *ngIf="!isLogged" class="text-button" (click)="signInWithGoogle()">
-    <i class="fa-brands fa-google"></i>Iniciar sesión con Google
+    <i class="fa-brands fa-google"></i> Iniciar sesión con Google
   </button>
 
   <button *ngIf="isLogged" class="text-button" (click)="signOut()">
-    <i class="fa-brands fa-google"></i>Cerrar sesión
+    <i class="fa-brands fa-google"></i> Cerrar sesión
   </button>
 
-  <button class="text-button" (click)="regresar()">
-    Regresar
-  </button>
+  <button class="text-button" (click)="regresar()">Regresar</button>
 </div>

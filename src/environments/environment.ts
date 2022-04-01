@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiURL : "http://localhost/catalogoDigitalAPI/api/values"
+  apiURL : "http://localhost/catalogoDigitalAPI/api/values",
+  urlIMG : "http://localhost:4200",
 };
 
 /*

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ServiciosService } from '../servicios.service';
 import { Iempresa, Iarticulo, Icatalogo, Imarca} from '../modelo-db';
+import { environment } from "../../environments/environment";
 
 @Component({
   selector: 'app-feed-negocio',
@@ -13,10 +14,14 @@ import { Iempresa, Iarticulo, Icatalogo, Imarca} from '../modelo-db';
 })
 export class FeedNegocioComponent implements OnInit {
 
+
+  _urlIMG: string = environment.urlIMG;
+
   _idEmpresa: number;
   _empresa: Iempresa = null;
   _articulosList: Iarticulo[] = [];
   _catalogosList: Icatalogo[] = [];
+  // _auxCatalogosList: any[] = [];
   _marcasList: Imarca[] = [];
   _showArticulos: boolean = true;
   _showCatalogos: boolean = false;
@@ -27,7 +32,7 @@ export class FeedNegocioComponent implements OnInit {
   _idMarca: string = "0";
 
   // titulos para filtros
-  _tituloCatalogo: string = "Catalogos";
+  _tituloCatalogo: string = "Catálogos";
   _tituloMarca: string = "Marcas";
 
   constructor(private _servicios: ServiciosService, private _toastr: ToastrService, private _router: Router, private sanitizer:DomSanitizer) { }
@@ -38,7 +43,7 @@ export class FeedNegocioComponent implements OnInit {
     this._servicios.menuTopIconos({menuFijo: false,
       btnMenu : true,
       titulo: true,
-      btnBuscar: false,
+      btnBuscar: true,
       btnCerrar: false,
       btnRegresar: false,
       btnConfig: true,
@@ -79,17 +84,18 @@ export class FeedNegocioComponent implements OnInit {
     this._servicios.wsGeneral("getCatalogos", { idEmpresa: this._idEmpresa})
       .subscribe(resp => {
         this._catalogosList = resp
-                                .filter(art => art.ctdArticulos > 0)
-                                .map(x => {
-                                      x.imagen = x.imagen ?? "";
-                                      return x;
-                                    })
+        .filter(cat => cat.ctdArticulos > 0)
+        .map(x => {
+                    x.imagen = x.imagen ?? ""; 
+                    return x;});
+        
       }, error => this._toastr.error("Error : " + error.error.ExceptionMessage, "Catálogos")
       , () => {
         this._showArticulos = false;
         this._showCatalogos = true;
         this._showMarcas = false;
-        this._tituloCatalogo = "Catalogos";
+        this._tituloCatalogo = "Catálogos";
+        this._tituloMarca = "Marcas";
       });
   }
 
@@ -108,11 +114,13 @@ export class FeedNegocioComponent implements OnInit {
         this._showCatalogos = false;
         this._showMarcas = true;
         this._tituloMarca = "Marcas";
+        this._tituloCatalogo = "Catálogos";
       });
   }
 
   getArticuloCatalogo(idCategoria: string) {
     this._idCategoria = idCategoria;
+    this._idMarca = "0";
     this._tituloCatalogo = idCategoria;
     sessionStorage.setItem("idCategoria", this._idCategoria );
     this.getArticulos(false);
@@ -120,6 +128,7 @@ export class FeedNegocioComponent implements OnInit {
 
   getArticuloMarca(idMarca: string) {
     this._idMarca = idMarca;
+    this._idCategoria = "0";
     this._tituloMarca = idMarca;
     sessionStorage.setItem("idMarca", this._idMarca);
     this.getArticulos(false);
@@ -128,6 +137,10 @@ export class FeedNegocioComponent implements OnInit {
   swiper(itemArticulo: Iarticulo){
     sessionStorage.setItem("articuloVenta", JSON.stringify(itemArticulo));
     this._router.navigate(["/swiper"]) ;
+  }
+
+  getImagen(urlImagen: string) {
+    return ((urlImagen) ?? this._urlIMG + "/assets/img/imagenFondoGeneral.jpg");
   }
 
 }

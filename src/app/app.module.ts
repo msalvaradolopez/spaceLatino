@@ -27,6 +27,7 @@ import {
 } from 'angularx-social-login';
 import { LoginComponent } from './login/login.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
+import { BuscarComponent } from './buscar/buscar.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { FavoritosComponent } from './favoritos/favoritos.component';
     FeedNegocioComponent,
     PopupOkComponent,
     LoginComponent,
-    FavoritosComponent
+    FavoritosComponent,
+    BuscarComponent
   ],
   imports: [
     BrowserModule,

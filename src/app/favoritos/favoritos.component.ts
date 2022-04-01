@@ -49,18 +49,7 @@ export class FavoritosComponent implements OnInit {
       valorTitulo: "Mis Favoritos"});
 
     
-    // acciones llamadas desde el menuTop
-    this._subIconosAcciones = this._servicios.iconosAcciones$
-    .subscribe(resp => {
-      if (resp == "regresar" && this._ventanAnterior == "catalogo") {
-        this._servicios.swiper(true);
-        // this._router.navigate(["/loader"]) ;
-      }
-        
-      else
-        this._router.navigate([this._ventanAnterior]) ;
-    });
-
+    
     if(!this._favoritos)
       this._favoritos = [];
 
@@ -75,9 +64,6 @@ export class FavoritosComponent implements OnInit {
   }
 
   addFavorito(articulo: Iarticulo) {
-
-    console.log("addFavorito");
-
     let subGoogle: Subscription;
     subGoogle = this.authService.authState.subscribe(
                   data => {
@@ -95,6 +81,10 @@ export class FavoritosComponent implements OnInit {
       sessionStorage.setItem("favoritos", JSON.stringify(this._favoritos));
       this._servicios.actFavorito();
       this._servicios.msgPopupOk("Favorito actualizado.");
+
+      if (this._favoritos.length == 0)
+        this._router.navigate(["/swiper"]) ;
+
     }
 
     

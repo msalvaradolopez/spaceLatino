@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ArticuloVentaComponent } from './articulo-venta/articulo-venta.component';
+import { BuscarComponent } from './buscar/buscar.component';
 import { CarritoComponent } from './carrito/carrito.component';
 import { CatalogoSwiperComponent } from './catalogo-swiper/catalogo-swiper.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: "feed", component: FeedNegocioComponent},
   {path: "swiper", component: CatalogoSwiperComponent},
   {path: "loader", component: LoaderComponent},
-  {path: "favotiros", component: FavoritosComponent},
+  {path: "favoritos", component: FavoritosComponent},
+  {path: "buscar", component: BuscarComponent},
   { path: '', redirectTo: 'loader', pathMatch: 'full' }
 ];
 

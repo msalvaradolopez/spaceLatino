@@ -42,7 +42,7 @@ export class CatalogoSwiperComponent implements OnInit, AfterViewInit{
     private authService: SocialAuthService) { }
 
   ngOnInit(): void {
-  
+
     this._idEmpresa = parseInt(sessionStorage.getItem("idEmpresa"));
 
     this._articulosList = JSON.parse(sessionStorage.getItem("articulosList"));
@@ -56,7 +56,7 @@ export class CatalogoSwiperComponent implements OnInit, AfterViewInit{
     this._servicios.menuTopIconos({menuFijo: true,
       btnMenu : true,
       titulo: true,
-      btnBuscar: false,
+      btnBuscar: true,
       btnCerrar: false,
       btnRegresar: false,
       btnConfig: true,

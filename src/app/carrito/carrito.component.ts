@@ -38,7 +38,7 @@ export class CarritoComponent implements OnInit, AfterViewInit {
       btnCerrar: false,
       btnRegresar: false,
       btnConfig: true,
-      valorTitulo: "Carrito"});
+      valorTitulo: "Mi pedido"});
 
     
     // acciones llamadas desde el menuTop

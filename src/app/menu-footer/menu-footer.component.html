@@ -3,11 +3,12 @@
     <i class="fa-solid fa-house"></i>
     <span class="letra-x-sm">Artículos</span>
   </a>
-  <a routerLink="favotiros" class="boton-menu-footer">
+  <a routerLink="favoritos" class="boton-menu-footer">
     <i class="fa-solid fa-heart" [style.color]="_ctdFavotiros > 0 ? 'red' : ''">
     </i>
     <span class="letra-x-sm">Mis Favoritos</span>
     <span
+      *ngIf="_ctdFavotiros > 0"
       class="ctd-favoritos"
       [style.color]="_ctdFavotiros > 0 ? 'red' : ''"
       >{{ _ctdFavotiros }}</span
@@ -25,6 +26,7 @@
     </i>
     <span class="letra-x-sm">Mi Pedido</span>
     <span
+      *ngIf="_ctdPedidos > 0"
       class="ctd-favoritos"
       [style.color]="_ctdPedidos > 0 ? 'green' : ''"
       >{{ _ctdPedidos }}</span

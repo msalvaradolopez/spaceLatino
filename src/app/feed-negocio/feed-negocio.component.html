@@ -8,11 +8,21 @@
     <div class="overlay"></div>
   </div>
   <hr />
-  <div class="feed-menu">
-    <a (click)="getArticulos(true)">Todos</a>
-    <a (click)="getCatalogos()">{{ _tituloCatalogo }}</a>
-    <a (click)="getMarcas()">{{ _tituloMarca }}</a>
-  </div>
+  <nav class="feed-menu">
+    <a (click)="getArticulos(true)" class="boton-menu-feed">
+      <i class="fa-regular fa-bookmark"></i>
+      <span class="letra-x-sm">Todos</span>
+    </a>
+    <a (click)="getCatalogos()" class="boton-menu-feed">
+      <i class="fa-regular fa-object-group"></i>
+      <span class="letra-x-sm"> {{ _tituloCatalogo }}</span>
+    </a>
+    <a (click)="getMarcas()" class="boton-menu-feed">
+      <i class="fa-regular fa-copyright"></i>
+      <span class="letra-x-sm">{{ _tituloMarca }}</span>
+    </a>
+  </nav>
+
   <hr />
   <div *ngIf="_showArticulos" class="feed-articulos">
     <div
@@ -25,7 +35,7 @@
     >
       <div class="overlay"></div>
       <div class="articulo-titulo">
-        <span class="feed-texto">{{ articulo.nomArticulo }}</span>
+        <span class="feed-texto"> {{ articulo.nomArticulo }}</span>
       </div>
     </div>
   </div>
@@ -38,10 +48,11 @@
     <div
       *ngFor="let catalogo of _catalogosList"
       class="feed-item"
-      [ngStyle]="{
-        'background-image': 'url(\'' + catalogo.imagen.urlImagen + '\')'
-      }"
       (click)="getArticuloCatalogo(catalogo.idCategoria)"
+      [ngStyle]="{
+        'background-image':
+          'url(\'' + getImagen(catalogo.imagen.urlImagen) + '\')'
+      }"
     >
       <div class="overlay"></div>
       <div class="articulo-titulo">
@@ -59,7 +70,7 @@
       *ngFor="let marca of _marcasList"
       class="feed-item"
       [ngStyle]="{
-        'background-image': 'url(\'' + marca.imagen.urlImagen + '\')'
+        'background-image': 'url(\'' + getImagen(marca.imagen.urlImagen) + '\')'
       }"
       (click)="getArticuloMarca(marca.idMarca)"
     >

@@ -1,0 +1,15 @@
+<div class="feed-articulos">
+  <div
+    *ngFor="let articulo of _articulosList"
+    class="feed-item"
+    [ngStyle]="{
+      'background-image': 'url(\'' + articulo.imagen + '\')'
+    }"
+    (click)="swiper(articulo)"
+  >
+    <div class="overlay"></div>
+    <div class="articulo-titulo">
+      <span class="feed-texto"> {{ articulo.nomArticulo }}</span>
+    </div>
+  </div>
+</div>

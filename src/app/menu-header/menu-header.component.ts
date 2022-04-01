@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ServiciosService } from '../servicios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-header',
@@ -30,7 +31,7 @@ export class MenuHeaderComponent implements OnInit, OnDestroy {
   _dosColumnas: boolean = true;
   _subscription: Subscription;
 
-  constructor(private _servicios: ServiciosService) { }
+  constructor(private _servicios: ServiciosService, private _router: Router) { }
 
   ngOnInit(): void {
     this._menuTopiconos.valorTitulo = sessionStorage.getItem("nomEmpresa");
@@ -43,18 +44,21 @@ export class MenuHeaderComponent implements OnInit, OnDestroy {
           this._menuTopiconos.valorTitulo = sessionStorage.getItem("nomEmpresa");
 
         this._valorTitulo = this._menuTopiconos.valorTitulo;
+        this._inputBuscar = false;
       });
   }
 
 
   accionLupa() {
     this._menuTopiconos.btnBuscar = false;
+    this._menuTopiconos.menuFijo = false;
     this._menuTopiconos.btnCerrar = true;
     this._menuTopiconos.titulo = false;
     this._inputBuscar = true;
     setTimeout(()=>{ // this will make the execution after the above boolean has changed
       this.searchElement.nativeElement.focus();
-    },0);  
+    },0); 
+    this._router.navigate(["/buscar"]) ; 
   }
 
   accionCerrar() {
@@ -62,7 +66,9 @@ export class MenuHeaderComponent implements OnInit, OnDestroy {
     this._menuTopiconos.btnCerrar = false;
     this._menuTopiconos.titulo = true;
     this._inputBuscar = false;
-    this._servicios.buscar("");
+
+      this._router.navigate(["/loader"]) ;
+    
   }
 
   // CAMBIAR DE DOS A TRES COLUMNAS O DE TRES COLUMNAS A DOS PARA MOSTRAR EL LISTADO DE ARTICULOS.
