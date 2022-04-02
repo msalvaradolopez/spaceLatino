@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { VentaAcciones } from '../venta-acciones';
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-carrito',
@@ -21,9 +22,17 @@ export class CarritoComponent implements OnInit, AfterViewInit {
   _ventanAnterior: string = "";
   _importeTotal: number = 0.00;
   _articulo: Iarticulo = null;
-  _pedido: Ipedido = {idUsuario: "", telefono: "", direccion: "", notas: "", carrito: []};
+  _pedido: Ipedido = {idPedido: 0 ,idEmpresa: 0, idUsuario: "", telefono: "", direccion: "", notas: "", carrito: []};
 
-  constructor(private _servicios: ServiciosService, private _toastr: ToastrService, private _router: Router, private sanitizer:DomSanitizer) { }
+  socialUser: SocialUser;
+  userLogged: SocialUser;
+  isLogged: boolean = false;
+
+  constructor(private _servicios: ServiciosService, 
+    private _toastr: ToastrService, 
+    private _router: Router, 
+    private sanitizer:DomSanitizer,
+    private authService: SocialAuthService) { }
 
   ngOnInit(): void {
 
@@ -69,7 +78,7 @@ export class CarritoComponent implements OnInit, AfterViewInit {
   }
 
   delCarrito(articulo: Iarticulo) {
-    let accionesCarrito = new VentaAcciones(articulo, this._carritoList, null);
+    let accionesCarrito = new VentaAcciones(articulo, this._carritoList);
 
     this._carritoList = accionesCarrito.delCarrito();
     
@@ -81,7 +90,7 @@ export class CarritoComponent implements OnInit, AfterViewInit {
 
 
   importeTotal() {
-    let carritoAcciones = new VentaAcciones(this._articulo, this._carritoList, null);
+    let carritoAcciones = new VentaAcciones(this._articulo, this._carritoList);
    
     let importeTotal = carritoAcciones.importeVenta();
 
@@ -96,23 +105,53 @@ export class CarritoComponent implements OnInit, AfterViewInit {
 
   generarPedidos() {
     // validaciones
-    let idUsuario: string = this._pedido.idUsuario;
+    let idUsuario: string = "";
     let telefono: string = this._pedido.telefono;
     let direccion: string = this._pedido.direccion;
     let notas: string = this._pedido.notas;
-
-    if (!idUsuario) {
-      this._toastr.info("Falta Usuario.");
+     
+    if(this._carritoList.length <= 0) {
+      this._toastr.info("Eliga sus artículos antes de generar el pedido.");
       return;
     }
-     
+
+
     if (!telefono) {
       this._toastr.info("Falta telefono cliente.");
       return;
     }
 
-    let accionesCarrito = new VentaAcciones(this._articulo, this._carritoList, null);
-    let mensajeWhatsApp = accionesCarrito.generarPedido(this._pedido);
+    this._pedido.carrito = this._carritoList;
+    let mensaje: string = "";
+
+    let subGoogle: Subscription;
+    subGoogle = this.authService.authState.subscribe(
+                  data => {
+                    this.socialUser = data;
+                    this.isLogged = (this.socialUser != null);
+                  } 
+                );
+
+    if(this.isLogged) {
+
+      this._pedido.idUsuario = this.socialUser.email;
+      this._pedido.idEmpresa = this._idEmpresa;
+      this._servicios.wsGeneral("insPedido", this._pedido)
+      .subscribe(x => {
+        mensaje = x;
+      }, error => this._toastr.error("Error : " + error.error.ExceptionMessage, "Generar pedido")
+      , () => {
+        this._toastr.success( mensaje, "Generar pedido")
+        this._carritoList = [];
+        this._pedido = null;
+        sessionStorage.setItem("_carrito", JSON.stringify(this._carritoList));
+        this._servicios.actPedido();  
+        this._router.navigate(["/swiper"]) ;
+      });
+    } else
+      this._servicios.login(true);
+
+    subGoogle.unsubscribe();
 
   }
   

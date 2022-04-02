@@ -90,7 +90,7 @@ export class ArticuloVentaComponent implements OnInit, AfterViewInit {
   }    
 
   addCarrito() {    
-    let addCarritoAccion = new VentaAcciones(this._articulo, this._carrito, null);
+    let addCarritoAccion = new VentaAcciones(this._articulo, this._carrito);
 
     let ctdVentaCarrito: number = this._ctdVenta;
     if (ctdVentaCarrito < 1) {
@@ -109,7 +109,7 @@ export class ArticuloVentaComponent implements OnInit, AfterViewInit {
   }
 
   getCarrito() {
-    let accionesCarrito = new VentaAcciones(this._articulo, this._carrito, null);
+    let accionesCarrito = new VentaAcciones(this._articulo, this._carrito);
 
     let carritoDatos = accionesCarrito.getCarrito();
 
@@ -134,7 +134,7 @@ export class ArticuloVentaComponent implements OnInit, AfterViewInit {
   }  
 
   delCarrito() {
-    let accionesCarrito = new VentaAcciones(this._articulo, this._carrito, null);
+    let accionesCarrito = new VentaAcciones(this._articulo, this._carrito);
 
     this._carrito = accionesCarrito.delCarrito();
     

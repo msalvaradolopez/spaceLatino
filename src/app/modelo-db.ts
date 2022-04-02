@@ -34,6 +34,8 @@ export interface Iarticulo {
 
 
 export interface Ipedido {
+    idPedido: number;
+    idEmpresa: number;
     idUsuario: string;
     telefono: string;
 	direccion: string;
@@ -42,6 +44,7 @@ export interface Ipedido {
 }
 
 export interface Icarrito {
+    idEmpresa: number;
     articulo: Iarticulo;
     precio: number;
     cantidad: number;
@@ -99,4 +102,18 @@ export interface Imarca {
 
 export interface Ifavorito {
     articulo: Iarticulo;
+}
+
+export interface Iusuario {
+    idUsuario: string;
+    idEmpresa: number;
+    idSucursal?: string;
+    idPerfil?: string;
+    nombre: string;
+    telefono?: string;
+    direccion?: string;
+    mesCumple: number;
+    diaCumple: number;
+    genero: string;
+    estatus: string;
 }

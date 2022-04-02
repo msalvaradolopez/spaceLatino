@@ -6,21 +6,25 @@ export class VentaAcciones {
     private _articulo: Iarticulo;
     private _carrito: Icarrito[];
 
-    constructor(private pArticulo: Iarticulo, private pCarrito: Icarrito[], private _servicios: ServiciosService){
+    private _idEmpresa: number;
+
+    constructor(private pArticulo: Iarticulo, private pCarrito: Icarrito[]){
         this._articulo = pArticulo;
         this._carrito = pCarrito;
+
+        this._idEmpresa = parseInt(sessionStorage.getItem("idEmpresa"));
     }
 
     addCarrito(pCantidad: number): Icarrito[] {
 
-        let carritoNuevo :Icarrito = {articulo: null, precio: 0.00, cantidad: 0, importe: 0.00};
+        let carritoNuevo :Icarrito = {idEmpresa: this._idEmpresa, articulo: null, precio: 0.00, cantidad: 0, importe: 0.00};
 
         // busco si ya existe en el listado de carrito.
         carritoNuevo = this.getCarrito();
         if (carritoNuevo) 
             this._carrito = this.updCarrito(pCantidad);        
         else {
-            carritoNuevo = {articulo: this._articulo, precio: this._articulo.precio, cantidad: pCantidad, importe: this._articulo.precio * pCantidad};
+            carritoNuevo = {idEmpresa: this._idEmpresa, articulo: this._articulo, precio: this._articulo.precio, cantidad: pCantidad, importe: this._articulo.precio * pCantidad};
             this._carrito.push(carritoNuevo);
         }
 
@@ -73,6 +77,10 @@ export class VentaAcciones {
     }
 
     generarPedido(pedido: Ipedido): boolean {
+
+
+
+        pedido.carrito = this._carrito;
         
         // GUARDAR PEDIDO EN BASE DE DATOS.
         return true;
