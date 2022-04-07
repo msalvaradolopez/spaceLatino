@@ -43,6 +43,8 @@ export class CatalogoSwiperComponent implements OnInit, AfterViewInit{
 
   ngOnInit(): void {
 
+    sessionStorage.setItem("ventanaAnterior", "swiper");
+
     this._idEmpresa = parseInt(sessionStorage.getItem("idEmpresa"));
 
     this._articulosList = JSON.parse(sessionStorage.getItem("articulosList"));

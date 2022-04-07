@@ -27,9 +27,9 @@
   <hr />
   <span>Importe Total: {{ _importeTotal | currency }}</span>
   <hr />
-  <input type="text" placeholder="Teléfono" [(ngModel)]="_pedido.telefono" />
-  <input type="text" placeholder="Dirección" [(ngModel)]="_pedido.direccion" />
-  <input type="text" placeholder="Notas" [(ngModel)]="_pedido.notas" />
+  <input type="text" class="search-box" placeholder="Teléfono" [(ngModel)]="_pedido.telefono" />
+  <input type="text" class="search-box" placeholder="Dirección" [(ngModel)]="_pedido.direccion" />
+  <input type="text" class="search-box" placeholder="Notas" [(ngModel)]="_pedido.notas" />
   <hr />
   <button class="text-button boton-pedido" (click)="generarPedidos()">
     Generar pedido

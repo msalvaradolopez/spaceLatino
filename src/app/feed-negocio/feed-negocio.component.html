@@ -8,7 +8,7 @@
     <div class="overlay"></div>
   </div>
   <hr />
-  <nav class="feed-menu">
+  <nav id="feed-menu" class="feed-menu sticky">
     <a (click)="getArticulos(true)" class="boton-menu-feed">
       <i class="fa-regular fa-bookmark"></i>
       <span class="letra-x-sm">Todos</span>
@@ -81,3 +81,12 @@
     </div>
   </div>
 </div>
+
+<style>
+  nav.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+  }
+</style>

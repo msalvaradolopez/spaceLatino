@@ -39,5 +39,9 @@
     (click)="accionCerrar()"
     class="fa-solid fa-xmark"
   ></i>
-  <i *ngIf="_menuTopiconos.btnConfig" class="fa-solid fa-ellipsis-vertical"></i>
+  <i
+    *ngIf="_menuTopiconos.btnConfig"
+    class="fa-solid fa-ellipsis-vertical"
+    (click)="accionMenuaux()"
+  ></i>
 </header>

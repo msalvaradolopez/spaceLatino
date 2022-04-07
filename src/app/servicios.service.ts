@@ -40,6 +40,9 @@ export class ServiciosService {
   private _pedido = new Subject<boolean>();
   pedido$ = this._pedido.asObservable();
 
+  private _menuaux = new Subject<boolean>();
+  menuaux$ = this._menuaux.asObservable();
+
   constructor(private _http: HttpClient, private _router: Router) { }
 
   wsGeneral(ws: string, param: any ): Observable<any> {
@@ -91,6 +94,9 @@ export class ServiciosService {
     this._pedido.next();
   }
 
+  menuaux(accion: boolean) {
+    this._menuaux.next(accion);
+  }
 
 }
 

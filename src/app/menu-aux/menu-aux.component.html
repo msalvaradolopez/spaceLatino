@@ -1,0 +1,43 @@
+<div class="menuaux-container">
+  <nav id="nav-menuaux">
+    <h2>Ordenar por</h2>
+    <ul>
+      <li>
+        <a class="opciones-menuaux" (click)="getArticulos('RE')">
+          <i class="fa-regular fa-bookmark"></i>
+          <span> Relevancia</span>
+        </a>
+      </li>
+      <li>
+        <a class="opciones-menuaux" (click)="getArticulos('PB')">
+          <i class="fa-regular fa-bookmark"></i>
+          <span> Menor precio</span>
+        </a>
+      </li>
+      <li>
+        <a class="opciones-menuaux" (click)="getArticulos('PA')">
+          <i class="fa-regular fa-bookmark"></i>
+          <span> Mayor precio</span>
+        </a>
+      </li>
+      <li>
+        <hr />
+      </li>
+      <li>
+        <a class="opciones-menuaux" (click)="getArticulos('RE')">
+          <i class="fa-regular fa-bookmark"></i>
+          <span> Recargar info</span>
+        </a>
+      </li>
+      <li>
+        <hr />
+      </li>
+      <li>
+        <a class="opciones-menuaux" (click)="accionCerrar()">
+          <i class="fa-regular fa-bookmark"></i>
+          <span> Regresar</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

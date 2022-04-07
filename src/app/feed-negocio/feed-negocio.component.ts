@@ -39,6 +39,8 @@ export class FeedNegocioComponent implements OnInit {
 
   ngOnInit(): void {
 
+    sessionStorage.setItem("ventanaAnterior", "feed");
+
     // ACTIVA ICONOS DEL MENU TOP
     this._servicios.menuTopIconos({menuFijo: false,
       btnMenu : true,

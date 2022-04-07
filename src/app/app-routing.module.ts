@@ -8,6 +8,7 @@ import { FavoritosComponent } from './favoritos/favoritos.component';
 import { FeedNegocioComponent } from './feed-negocio/feed-negocio.component';
 import { LoaderComponent } from './loader/loader.component';
 import { LoginComponent } from './login/login.component';
+import { MenuAuxComponent } from './menu-aux/menu-aux.component';
 
 
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: "loader", component: LoaderComponent},
   {path: "favoritos", component: FavoritosComponent},
   {path: "buscar", component: BuscarComponent},
+  {path: "menuaux", component: MenuAuxComponent},
   { path: '', redirectTo: 'loader', pathMatch: 'full' }
 ];
 

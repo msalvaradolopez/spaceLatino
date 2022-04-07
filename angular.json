@@ -35,6 +35,7 @@
               "src/assets/css/feed.css",
               "src/assets/css/popup-ok.css",
               "src/assets/css/login.css",
+              "src/assets/css/menu-aux.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [

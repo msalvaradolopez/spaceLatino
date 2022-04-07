@@ -28,6 +28,7 @@ import {
 import { LoginComponent } from './login/login.component';
 import { FavoritosComponent } from './favoritos/favoritos.component';
 import { BuscarComponent } from './buscar/buscar.component';
+import { MenuAuxComponent } from './menu-aux/menu-aux.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { BuscarComponent } from './buscar/buscar.component';
     PopupOkComponent,
     LoginComponent,
     FavoritosComponent,
-    BuscarComponent
+    BuscarComponent,
+    MenuAuxComponent
   ],
   imports: [
     BrowserModule,

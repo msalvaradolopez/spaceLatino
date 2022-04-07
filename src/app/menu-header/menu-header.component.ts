@@ -93,6 +93,10 @@ export class MenuHeaderComponent implements OnInit, OnDestroy {
       this._servicios.buscar("");
   }
 
+  accionMenuaux() {
+    this._router.navigate(["/menuaux"]) ;
+  }
+
   ngOnDestroy(): void {
     this._subscription.unsubscribe();
   }
